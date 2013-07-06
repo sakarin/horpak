@@ -1,11 +1,27 @@
-<h2>Sign up</h2>
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
-  <%= f.error_notification %>
-  <%= display_base_errors resource %>
-  <%= f.input :name, :autofocus => true %>
-  <%= f.input :email, :required => true %>
-  <%= f.input :password, :required => true %>
-  <%= f.input :password_confirmation, :required => true %>
-  <%= f.button :submit, 'Sign up', :class => 'btn-primary' %>
-<% end %>
-<%= render "devise/shared/links" %>
+<div class="span11">
+  <h1>สมัครสมาชิก ฟรี!</h1>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical'}) do |f| %>
+      <%= f.error_notification %>
+      <%= display_base_errors resource %>
+      <%= f.input :name, :autofocus => true %>
+      <%= f.input :email, :required => true %>
+      <%= f.input :telephone, :required => false %>
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :required => true %>
+      <%= f.input :email_notice, :required => false %>
+      <%= f.button :submit, 'สมัครสมาชิก', :class => 'btn-primary' %>
+      <%= render "devise/shared/links" %>
+  <% end %>
+
+
+
+  <div class="fb_login">
+
+    <h2>ล็อกอินด้วย Facebook Account </h2>
+
+    <a href="/users/auth/facebook" class="login_with facebook">Login with Facebook</a>
+    <p class="hint">ใช้งานได้ทันที โดยไม่ต้องยืนยันอีเมล</p>
+
+  </div>
+
+</div>

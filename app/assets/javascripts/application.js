@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jasny-bootstrap
 //= require_tree .
-//= require flat-ui
+

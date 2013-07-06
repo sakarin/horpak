@@ -1,0 +1,25 @@
+
+
+th:
+  devise:
+    button:
+      submit: "เข้าสู่ระบบ"
+      registration: "สมัครสมาชิก"
+      update: "บันทึกข้อมูลของคุณ"
+
+
+  activerecord:
+    models:
+      user: "ผู้ใช้"
+
+    attributes:
+      user:
+        name: "ชื่อ"
+        email: "อีเมล์"
+        password: "รหัสผ่าน"
+        password_confirmation: "ยืนยันรหัสผ่าน"
+        current_password: "รหัสผ่านเดิม"
+        remember_me:  "จำข้อมูลฉันไว้"
+        telephone: "หมายเลขโทรศัพท์"
+        email_notice: "รับข่าวสารและโปรโมชั่นจากทางเวป และที่พักที่เป็นสมาชิก"
+

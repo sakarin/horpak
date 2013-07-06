@@ -9,7 +9,7 @@ group :assets do
 end
 gem 'jquery-rails'
 gem 'cancan'
-gem 'devise'
+
 gem 'figaro'
 gem 'libv8'
 gem 'rolify'
@@ -18,7 +18,8 @@ group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform => :ruby, :require => "v8"
   gem 'twitter-bootstrap-rails'
-  gem 'flatui-rails'
+  gem 'bootstrap-google-sass'
+  gem 'jasny_bootstrap_extension_rails'
 end
 group :development do
   gem 'better_errors'
@@ -45,3 +46,9 @@ group :test do
   gem 'database_cleaner'
   gem 'email_spec'
 end
+
+gem 'devise', '2.1.2'
+gem "omniauth-facebook", "1.4.1"
+
+gem 'carrierwave', '0.6.2'
+gem "rmagick"

@@ -1,7 +1,40 @@
-<h3>Users</h3>
-<div class="span12">
-<table class="table table-condensed">
-  <thead>
+<div class="span11">
+
+  <div class="head-title">
+    <h2>
+
+      แก้ไขข้อมูลผู้ใช้
+    </h2>
+  </div>
+
+  <div class="title-group">
+    <div class="title">
+      <h3>
+        <div class="RG"></div>
+        แก้ไขข้อมูลผู้ใช้
+      </h3>
+    </div>
+  </div>
+
+  <div class="control-group string optional user_name">
+    <label class="string optional control-label" for="user_name">ชื่อผู้ใช้งาน</label>
+
+    <div class="controls">
+      <input autofocus="autofocus" class="string optional" id="user_name" name="user[name]" size="50" type="text" value="First User">
+    </div>
+  </div>
+  <div class="control-group email required user_email">
+    <label class="email required control-label" for="user_email"><abbr title="required">*</abbr> Email</label>
+
+    <div class="controls">
+      <input class="string email required" id="user_email" name="user[email]" size="50" type="email" value="user@example.com">
+    </div>
+  </div>
+
+
+
+  <table class="table table-bordered">
+    <thead>
     <tr>
       <th>Username</th>
       <th>Email</th>
@@ -10,82 +43,27 @@
       <th></th>
       <th></th>
     </tr>
-  </thead>
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= link_to user.name, user %></td>
-      <td><%= user.email %></td>
-      <td><%= user.created_at.to_date %></td>
-      <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
-      <td>
-        <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini" type="button">Change role</a>
-        <%= render user %>
-      </td>
-      <td><%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-  <table class="table table-bordered">
-    <thead>
-    <tr>
-      <th><label class="checkbox no-label toggle-all" for="checkbox-table-1"><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox-table-1" data-toggle="checkbox"></label></th>
-      <th>Rank</th>
-      <th>Name</th>
-      <th>Genre</th>
-      <th>Votes</th>
-      <th>Year</th>
-      <th>Rating</th>
-    </tr>
     </thead>
     <tbody>
-    <tr class="">
-      <td><label class="checkbox no-label" for="checkbox-table-2"><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox-table-2" data-toggle="checkbox"></label></td>
-      <td>1</td>
-      <td>ศักรินทร์  รัชชปัญญา</td>
-      <td>Crime, Drama</td>
-      <td>923,629</td>
-      <td>1994</td>
-      <td>9.2</td>
-    </tr>
-    <tr class="selected-row">
-      <td><label class="checkbox no-label checked" for="checkbox-table-3"><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" checked="checked" value="" id="checkbox-table-3" data-toggle="checkbox"></label></td>
-      <td>2</td>
-      <td>The Godfather</td>
-      <td>Crime, Drama</td>
-      <td>663,133</td>
-      <td>1972</td>
-      <td>9.2</td>
-    </tr>
-    <tr class="selected-row">
-      <td><label class="checkbox no-label checked" for="checkbox-table-4"><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" checked="checked" value="" id="checkbox-table-4" data-toggle="checkbox"></label></td>
-      <td>3</td>
-      <td>The Godfather: Part II</td>
-      <td>Crime, Drama</td>
-      <td>427,132</td>
-      <td>1974</td>
-      <td>9.0</td>
-    </tr>
-    <tr>
-      <td><label class="checkbox no-label" for="checkbox-table-5"><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox-table-5" data-toggle="checkbox"></label></td>
-      <td>4</td>
-      <td>Pulp Fiction</td>
-      <td>Crime, Drama</td>
-      <td>719,280</td>
-      <td>1994</td>
-      <td>8.9</td>
-    </tr>
-    <tr>
-      <td><label class="checkbox no-label" for="checkbox-table-6"><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span><input type="checkbox" value="" id="checkbox-table-6" data-toggle="checkbox"></label></td>
-      <td>5</td>
-      <td>The Good, the Bad and the Ugly</td>
-      <td>Adventure, Western</td>
-      <td>218,887</td>
-      <td>1966</td>
-      <td>8.9</td>
-    </tr>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, user %></td>
+          <td><%= user.email %></td>
+          <td><%= user.created_at.to_date %></td>
+          <td><%= user.roles.first.name.titleize unless user.roles.first.nil? %></td>
+          <td>
+            <a data-toggle="modal" href="#role-options-<%= user.id %>" class="btn btn-mini btn-primary" type="button">Change
+              role</a>
+            <%= render user %>
+          </td>
+          <td><%= link_to("Delete user", user_path(user), :data => {:confirm => "Are you sure?"}, :method => :delete, :class => 'btn btn-mini') unless user == current_user %></td>
+        </tr>
+    <% end %>
     </tbody>
   </table>
+
+
+
+
+
 </div>
