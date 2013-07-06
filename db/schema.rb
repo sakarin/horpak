@@ -11,7 +11,47 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706045156) do
+ActiveRecord::Schema.define(:version => 20130706084102) do
+
+  create_table "amphurs", :force => true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.integer "geo_id"
+    t.integer "province_id"
+  end
+
+  create_table "apartments", :force => true do |t|
+    t.string   "name"
+    t.string   "staff"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "road"
+    t.string   "street"
+    t.integer  "province_id"
+    t.integer  "amphur_id"
+    t.integer  "district_id"
+    t.integer  "postcode"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "districts", :force => true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.integer "amphur_id"
+    t.integer "province_id"
+    t.integer "geo_id"
+  end
+
+  create_table "provinces", :force => true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.integer "geo_id"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"

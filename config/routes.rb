@@ -1,4 +1,7 @@
 Horpak::Application.routes.draw do
+  resources :apartments
+
+
   authenticated :user do
     root :to => 'home#index'
   end
@@ -8,7 +11,8 @@ Horpak::Application.routes.draw do
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
              controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
-  #match "/users/auth/failure" => redirect("/")
+  match "/dynamic_amphurs/:province_id" => "apartments#dynamic_amphurs", :via => :post
+  match "/dynamic_districts/:amphur_id" => "apartments#dynamic_districts", :via => :post
 
 
   root :to => "home#index"

@@ -15,4 +15,5 @@
 //= require twitter/bootstrap
 //= require jasny-bootstrap
 //= require_tree .
+//= require bootstrap-wysihtml5
 

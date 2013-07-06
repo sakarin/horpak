@@ -52,3 +52,4 @@ gem "omniauth-facebook", "1.4.1"
 
 gem 'carrierwave', '0.6.2'
 gem "rmagick"
+gem 'bootstrap-wysihtml5-rails'

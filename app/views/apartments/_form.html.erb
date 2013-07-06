@@ -1,0 +1,84 @@
+<%= simple_form_for(@apartment) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <div class="title-group">
+        <div class="title">
+          <h3>
+            <div class="RG"></div>
+            ข้อมูลที่พัก
+          </h3>
+        </div>
+      </div>
+      <div class="form-horizontal">
+        <%= f.input :name, input_html: {class: 'input-xxlarge'} %>
+        <%= f.input :staff, input_html: {class: 'input-large'} %>
+        <%= f.input :telephone, input_html: {class: 'input-large'} %>
+        <%= f.input :email, input_html: {class: 'input-large'} %>
+      </div>
+
+
+      <div class="clearfix grouped_input">
+        <label>ที่อยู่</label>
+
+
+        <div class="form-apartment-address grouped_input">
+          <div class="indent clearfix">
+            <span><%= f.input :address %></span>
+            <span><%= f.input :road %></span>
+            <span><%= f.input :street %></span>
+          </div>
+          <div class="indent clearfix">
+              <span>
+                <%= f.input :province_id do %>
+                  <%= f.collection_select(:province_id, Province.order("name ASC"), :id, :name, include_blank: true) %>
+                <% end %>
+              </span>
+            <span>
+              <%= f.input :amphur_id do %>
+                   <% if @apartment.province_id.blank? %>
+                        <%= select_tag "apartment[amphur_id]", "<option></option>".html_safe %>
+                   <% else %>
+                        <%= f.collection_select(:amphur_id, Amphur.find_all_by_province_id(@apartment.province_id), :id, :name, include_blank: false) %>
+                   <% end %>
+              <% end %>
+                  </span>
+            <span>
+              <%= f.input :district_id do %>
+                  <% if @apartment.amphur_id.blank? %>
+                        <%= select_tag "apartment[district_id]", "<option></option>".html_safe %>
+                   <% else %>
+                        <%= f.collection_select(:district_id,District.find_all_by_amphur_id(@apartment.amphur_id), :id, :name, include_blank: false) %>
+                   <% end %>
+              <% end %>
+            </span>
+            <span> <%= f.input :postcode %> </span>
+          </div>
+        </div>
+
+
+      </div>
+
+
+      <%#= f.input :latitude %>
+      <%#= f.input :longitude %>
+      <%= render 'map', :f => f %>
+
+      <div class="title-group">
+        <div class="title">
+          <h3>
+            <div class="RG"></div>
+            รายละเอียดเพิ่มเติม
+          </h3>
+        </div>
+      </div>
+
+      <%= f.input :description, :as => :text, input_html: {class: 'wysihtml5', :cols => 500, :rows => 3} %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class => "btn btn-success" %>
+    </div>
+<% end %>
+
+

@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @apartment.name %>
+</p>
+
+<p>
+  <b>Staff:</b>
+  <%= @apartment.staff %>
+</p>
+
+<p>
+  <b>Telephone:</b>
+  <%= @apartment.telephone %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @apartment.email %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @apartment.address %>
+</p>
+
+<p>
+  <b>Road:</b>
+  <%= @apartment.road %>
+</p>
+
+<p>
+  <b>Street:</b>
+  <%= @apartment.street %>
+</p>
+
+<p>
+  <b>Province:</b>
+  <%= @apartment.province_id %>
+</p>
+
+<p>
+  <b>Amphur:</b>
+  <%= @apartment.amphur_id %>
+</p>
+
+<p>
+  <b>District:</b>
+  <%= @apartment.district_id %>
+</p>
+
+<p>
+  <b>Postcode:</b>
+  <%= @apartment.postcode %>
+</p>
+
+<p>
+  <b>Latitude:</b>
+  <%= @apartment.latitude %>
+</p>
+
+<p>
+  <b>Longitude:</b>
+  <%= @apartment.longitude %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @apartment.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_apartment_path(@apartment) %> |
+<%= link_to 'Back', apartments_path %>

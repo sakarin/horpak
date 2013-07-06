@@ -10,7 +10,8 @@ th:
 
   activerecord:
     models:
-      user: "ผู้ใช้"
+      user: "สมาชิก"
+      apartment: "อพาร์ทเม้นท์"
 
     attributes:
       user:
@@ -23,3 +24,15 @@ th:
         telephone: "หมายเลขโทรศัพท์"
         email_notice: "รับข่าวสารและโปรโมชั่นจากทางเวป และที่พักที่เป็นสมาชิก"
 
+      apartment:
+        name: "ชื่อที่พัก"
+        staff: "ผู้ดูแล"
+        telephone: "โทรศัพท์"
+        email: "อีเมล์"
+        address: "เลขที่"
+        road: "ถนน"
+        street: "ซอย"
+        province_id: "จังหวัด"
+        amphur_id: "อำเภอ/เขต"
+        district_id: "ตำบล/แขวง"
+        postcode: "รหัสไปรษณีย์"
