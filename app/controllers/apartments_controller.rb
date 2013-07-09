@@ -63,7 +63,7 @@ class ApartmentsController < ApplicationController
         format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: "edit", notice: @apartment.errors }
         format.json { render json: @apartment.errors, status: :unprocessable_entity }
       end
     end

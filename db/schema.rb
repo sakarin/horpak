@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130706084102) do
+ActiveRecord::Schema.define(:version => 20130708114646) do
 
   create_table "amphurs", :force => true do |t|
     t.string  "code"
@@ -39,12 +39,38 @@ ActiveRecord::Schema.define(:version => 20130706084102) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "central_facilities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "central_facilities_apartments", :force => true do |t|
+    t.integer  "central_facility_id"
+    t.integer  "apartment_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "districts", :force => true do |t|
     t.string  "code"
     t.string  "name"
     t.integer "amphur_id"
     t.integer "province_id"
     t.integer "geo_id"
+  end
+
+  create_table "facilities", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "facilities_apartments", :force => true do |t|
+    t.integer  "facility_id"
+    t.integer  "apartment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "provinces", :force => true do |t|

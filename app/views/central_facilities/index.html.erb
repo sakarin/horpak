@@ -1,0 +1,30 @@
+<div class="span11">
+  <div class="row-fluid">
+    <div class="span8">
+      <h1><%= t('activerecord.models.central_facility') %></h1>
+    </div>
+    <div class="span4 pull-bottom">
+      <%= link_to "เพิ่ม#{t('activerecord.models.central_facility')}"  , new_central_facility_path, :class => "btn btn-success pull-right" %>
+    </div>
+  </div>
+
+
+  <table class="table table-bordered">
+    <tr>
+      <th>ชื่อ</th>
+      <th>เครื่องมือ</th>
+    </tr>
+
+    <% @central_facilities.each do |central_facility| %>
+        <tr>
+          <td><%= link_to central_facility.name, edit_central_facility_path(central_facility) %></td>
+
+          <td><%= link_to 'แก้ไข', edit_central_facility_path(central_facility), :class => "btn btn-primary btn-mini" %>
+            <%= link_to 'ลบ', central_facility, method: :delete, data: {confirm: t('notice.delete_confirm')}, :class => "btn btn-danger btn-mini" %></td>
+        </tr>
+    <% end %>
+  </table>
+
+  <%= will_paginate @central_facilities, :renderer => BootstrapPagination::Rails %>
+
+</div>

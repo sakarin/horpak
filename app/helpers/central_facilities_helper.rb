@@ -1,0 +1,2 @@
+module CentralFacilitiesHelper
+end

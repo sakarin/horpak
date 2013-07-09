@@ -7,11 +7,19 @@ th:
       registration: "สมัครสมาชิก"
       update: "บันทึกข้อมูลของคุณ"
 
+  notice:
+    delete_confirm: "คุณแน่ใจที่จะลบข้อมูลนี้ ?"
+    created: "ถูกเพิ่มแล้ว"
+    updated: "ถูกบันทึกแล้ว"
+
+
 
   activerecord:
     models:
       user: "สมาชิก"
       apartment: "อพาร์ทเม้นท์"
+      facility: "สิ่งอำนวยความสะดวก"
+      central_facility: "สิ่งอำนวยความสะดวกส่วนกลาง"
 
     attributes:
       user:
@@ -36,3 +44,7 @@ th:
         amphur_id: "อำเภอ/เขต"
         district_id: "ตำบล/แขวง"
         postcode: "รหัสไปรษณีย์"
+      facility:
+        name: "ชื่อ"
+      central_facility:
+        name: "ชื่อ"

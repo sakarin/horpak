@@ -32,6 +32,7 @@ group :development do
   gem 'rb-fchange', :require => false
   gem 'rb-fsevent', :require => false
   gem 'rb-inotify', :require => false
+  gem 'annotate'
 end
 group :development, :test do
   gem 'factory_girl_rails'
@@ -52,4 +53,9 @@ gem "omniauth-facebook", "1.4.1"
 
 gem 'carrierwave', '0.6.2'
 gem "rmagick"
+
 gem 'bootstrap-wysihtml5-rails'
+
+gem 'ransack'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'

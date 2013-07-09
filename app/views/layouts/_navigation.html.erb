@@ -1,5 +1,8 @@
 <%= link_to "Horpak", root_path, :class => 'brand' %>
 <ul class="nav">
+  <li><%= link_to "Apartment", apartments_path %></li>
+
+
   <% if user_signed_in? %>
     <li>
     <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
@@ -23,6 +26,24 @@
     <%= link_to 'Sign up', new_user_registration_path %>
     </li>
   <% end %>
+
+  <li class="dropdown" id="nav-user">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      config
+      <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+      <li class="">
+        <%= link_to "facilities", facilities_path %>
+      </li>
+      <li class="">
+        <%= link_to "central facilities", central_facilities_path %>
+      </li>
+
+    </ul>
+  </li>
+
+
 </ul>
 
 <% unless current_user.nil? -%>
