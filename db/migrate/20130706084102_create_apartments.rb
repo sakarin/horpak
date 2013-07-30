@@ -12,8 +12,6 @@ class CreateApartments < ActiveRecord::Migration
       t.integer :amphur_id
       t.integer :district_id
       t.integer :postcode
-      t.string :latitude
-      t.string :longitude
       t.text :description
 
       t.timestamps

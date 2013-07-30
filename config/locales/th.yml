@@ -44,6 +44,19 @@ th:
         amphur_id: "อำเภอ/เขต"
         district_id: "ตำบล/แขวง"
         postcode: "รหัสไปรษณีย์"
+
+        water_price_type: "ค่าน้ำ"
+#        water_price:
+#        water_price_monthly_per_person:
+#        water_price_monthly_per_room:
+#        water_price_remark:
+#        electric_price_type:
+#        electric_price:
+#        electric_price_remark:
+#        deposit:
+#        advance_fee:
+#        phone_price:
+#        internet_price:
       facility:
         name: "ชื่อ"
       central_facility:

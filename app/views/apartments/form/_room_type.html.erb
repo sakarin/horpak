@@ -1,0 +1,59 @@
+<div class="form-inputs">
+  <div class="title-group">
+    <div class="title">
+      <h3>
+        <div class="RG"></div>
+        ประเภทห้องพัก
+      </h3>
+    </div>
+  </div>
+
+  <table id="room-table" class=" table table-bordered" data-update-url="<%= sort_apartment_rooms_url(@apartment) %>">
+    <thead>
+    <tr>
+      <th style="width: 50px;"></th>
+      <th>ประเภท</th>
+      <th>รูปแบบห้อง</th>
+      <th>ขนาด</th>
+      <th>เช่ารายเดือน<br> (บาท/เดือน)</th>
+      <th>เช่ารายวัน <br> (บาท/วัน)</th>
+      <th>มีห้องว่าง</th>
+      <th>ยกเลิก</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <%= f.fields_for :rooms, :wrapper => false do |f| %>
+        <tr id='<%= "room_#{f.object.id}" %>' class="fields">
+          <td class="first" style="width: 39px;">&nbsp;</td>
+          <td><%= f.text_field :name %></td>
+          <td>
+            <%= f.select(:room_type,
+                         {"สตูดิโอ" => "0", "1 ห้องนอน" => "1", "2 ห้องนอน" => "2", "3 ห้องนอน" => "3", "4 ห้องนอน" => "4"
+                         },
+                         {:include_blank => "เลือกแบบห้อง"}, { :class => "room_type"} ) %>
+          </td>
+          <td><%= f.text_field :size, :class => 'col_room_size' %></td>
+          <td class="rental_fee">
+            <%= f.check_box :monthly %> ระบุค่าเช่า
+            <div class="rental_input clearfix">
+              <label class="price_input">ราคาเริ่มต้น</label>
+              <%= f.text_field :min_price_permonth, :class => "room_price" %>
+              <label class="price_input">ราคาสูงสุด</label>
+              <%= f.text_field :max_price_permonth, :class => "room_price" %>
+            </div>
+          </td>
+          <td></td>
+          <td><%= f.check_box :available %></td>
+          <td>
+            <%= f.link_to_remove "ลบ" %>
+          </td>
+        </tr>
+
+    <% end %>
+    </tbody>
+  </table>
+
+  <%= f.link_to_add "เพิ่มประเภทห้อง", :rooms, :data => {:target => "#room-table"}, :class => "btn btn-primary" %>
+
+</div>

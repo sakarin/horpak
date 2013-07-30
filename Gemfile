@@ -7,7 +7,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-gem 'jquery-rails'
+gem 'jquery-rails', '2.1.0'
 gem 'cancan'
 
 gem 'figaro'
@@ -19,6 +19,8 @@ group :assets do
   gem 'therubyracer', :platform => :ruby, :require => "v8"
   gem 'twitter-bootstrap-rails'
   gem 'bootstrap-google-sass'
+  gem 'jquery-fileupload-rails'
+
   gem 'jasny_bootstrap_extension_rails'
 end
 group :development do
@@ -59,3 +61,10 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'ransack'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
+
+#gem 'gmaps4rails'
+
+gem 'acts_as_list'
+gem 'best_in_place'
+
+gem "nested_form"

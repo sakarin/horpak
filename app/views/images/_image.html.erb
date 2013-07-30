@@ -1,0 +1,9 @@
+<%= content_tag_for :li, image do %>
+    <%= link_to "", apartment_image_path(@apartment, image), :method => :delete, :class => "delete_image" %>
+    <div class="handle">
+      <div class="imagecontainer">
+        <%= image_tag(image.attachment_url(:thumb)) %>
+      </div>
+      <div class="image-name"><%= best_in_place image, :name, :path => apartment_image_path(@apartment, image) %></div>
+    </div>
+<% end %>

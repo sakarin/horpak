@@ -1,0 +1,83 @@
+<script type="text/javascript">
+    function updateLatLng() {
+        mkctn ? ($("#apartment_latitude").val(mk.getPosition().lat()), $("#apartment_longitude").val(mk.getPosition().lng())) : ($("#apartment_latitude").val(null), $("#apartment_longitude").val(null))
+    }
+    function toggleMarker() {
+        mkctn ? (mk.setMap(null), mkctn = 0, updateLatLng()) : (mk.setPosition(map.getCenter()), mk.setMap(map), mkctn = 1, updateLatLng())
+    }
+    function latlngLookup(e) {
+        geocoder.geocode({address: e, region: "th"}, function (e, t) {
+            t == google.maps.GeocoderStatus.OK ? (map.panTo(e[0].geometry.location), mkctn ? (mk.setPosition(e[0].geometry.location), updateLatLng()) : toggleMarker()) : alert("Google หาตำแหน่งที่ระบุไม่พบ")
+        })
+    }
+    function updateMapCenter(e, t, n) {
+        if (typeof google != "undefined") {
+            var r = new google.maps.LatLng(e, t);
+            map.setCenter(r), map.setZoom(n)
+        }
+    }
+    function provinceObserve() {
+        function e() {
+            updateMapCenter(district_lat, district_lng, 13)
+        }
+
+        function t() {
+            updateMapCenter(subdistrict_lat, subdistrict_lng, 14)
+        }
+
+    }
+
+    function initMap() {
+
+        provinceObserve();
+        var e, t = $("#apartment_latitude").val(), n = $("#apartment_longitude").val();
+        t ? e = new google.maps.LatLng(t, n) : e = new google.maps.LatLng(13.7541, 100.4939);
+        var r = {zoom: 10, center: e, mapTypeControlOptions: {mapTypeIds: [google.maps.MapTypeId.ROADMAP, google.maps.MapTypeId.HYBRID]}, noClear: !0, mapTypeId: google.maps.MapTypeId.ROADMAP, disableDoubleClickZoom: !0, scrollwheel: !1, streetViewControl: !1};
+        geocoder = new google.maps.Geocoder, map = new google.maps.Map(document.getElementById("map_canvas"), r);
+        var i = "/assets/icons/pin_blue_selected.png";
+        mk = new google.maps.Marker({draggable: !0, icon: i, map: map}), google.maps.event.addListener(mk, "dragend", function () {
+            updateLatLng()
+        }), google.maps.event.addListener(map, "click", function (e) {
+            mk.setPosition(e.latLng), map.panTo(e.latLng), mkctn ? updateLatLng() : toggleMarker()
+        });
+        var s = google.maps.event.addListener(map, "idle", function () {
+            google.maps.event.removeListener(s), t && (toggleMarker(), map.setZoom(13))
+        });
+        $("#maplookup").click(function () {
+            var e = $("#apartment_address").val() + " , ", t = $("#apartment_road").val() + " , ", n = $("#apartment_street").val() + " , ", r = $("#apartment_province_id option:selected").text(), i = $("#apartment_amphur_id option:selected").text() + " , ", s = $("#apartment_district_id option:selected").text() + " , ", o = t + n + s + i + r;
+            return latlngLookup(o), !1
+        })
+    }
+    function loadMapScript() {
+        var e = document.createElement("script");
+        e.type = "text/javascript", e.src = "http://maps.googleapis.com/maps/api/js?sensor=true&language=th&callback=initMap", document.body.appendChild(e)
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    var map, mkctn, mk, geocoder;
+    loadMapScript();
+
+</script>
+
+
+<div class="control-group">
+  <label class="control-label" for="inputPassword"> แผนที่:</label>
+
+  <div class="controls">
+
+    <a id="maplookup" href='#' class="btn">กดเพื่อค้นหาตำแหน่ง</a>
+  </div>
+</div>
+
+
+
+<div id="map_canvas"></div>
+
+
+<%= f.hidden_field :latitude %>
+<%= f.hidden_field :longitude %>
+<%= f.hidden_field :gmaps_zoom %>
+

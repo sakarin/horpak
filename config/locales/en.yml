@@ -1,5 +1,63 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
 
 en:
-  hello: "Hello world"
+  devise:
+    button:
+      submit: "เข้าสู่ระบบ"
+      registration: "สมัครสมาชิก"
+      update: "บันทึกข้อมูลของคุณ"
+
+  notice:
+    delete_confirm: "คุณแน่ใจที่จะลบข้อมูลนี้ ?"
+    created: "ถูกเพิ่มแล้ว"
+    updated: "ถูกบันทึกแล้ว"
+
+
+
+  activerecord:
+    models:
+      user: "สมาชิก"
+      apartment: "อพาร์ทเม้นท์"
+      facility: "สิ่งอำนวยความสะดวก"
+      central_facility: "สิ่งอำนวยความสะดวกส่วนกลาง"
+
+    attributes:
+      user:
+        name: "ชื่อ"
+        email: "อีเมล์"
+        password: "รหัสผ่าน"
+        password_confirmation: "ยืนยันรหัสผ่าน"
+        current_password: "รหัสผ่านเดิม"
+        remember_me:  "จำข้อมูลฉันไว้"
+        telephone: "หมายเลขโทรศัพท์"
+        email_notice: "รับข่าวสารและโปรโมชั่นจากทางเวป และที่พักที่เป็นสมาชิก"
+
+      apartment:
+        name: "ชื่อที่พัก"
+        staff: "ผู้ดูแล"
+        telephone: "โทรศัพท์"
+        email: "อีเมล์"
+        address: "เลขที่"
+        road: "ถนน"
+        street: "ซอย"
+        province_id: "จังหวัด"
+        amphur_id: "อำเภอ/เขต"
+        district_id: "ตำบล/แขวง"
+        postcode: "รหัสไปรษณีย์"
+
+        water_price_type: "ค่าน้ำ"
+#        water_price:
+#        water_price_monthly_per_person:
+#        water_price_monthly_per_room:
+#        water_price_remark:
+#        electric_price_type:
+#        electric_price:
+#        electric_price_remark:
+        deposit: "เงินมัดจำ"
+        advance_fee: "จ่ายล่วงหน้า"
+        phone_price: "ค่าโทรศัพท์"
+        internet_price: "อินเตอร์เน็ต"
+      facility:
+        name: "ชื่อ"
+      central_facility:
+        name: "ชื่อ"

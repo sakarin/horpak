@@ -1,0 +1,128 @@
+<div class="title-group">
+  <div class="title">
+    <h3>
+      <div class="RG"></div>
+      ค่าใช้จ่าย
+    </h3>
+  </div>
+</div>
+
+
+<div class="row-fluid">
+  <div class="price-label control-label span1">ค่่าน้ำ</div>
+  <div class="span9">
+    <div class="row-fluid dashed_row">
+      <div class="label-price span2">
+        <input id="apartment_water_price_type_1" name="apartment[water_price_type]" type="radio" value="1">
+        <span style="width: 100px;">ตามยูนิตที่ใช้</span>
+      </div>
+      <div class="input-price span4">
+
+        <%= f.text_field :water_price, :class => "input-mini price-input" %>
+        บาทต่อยูนิต
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="row-fluid">
+  <div class="span1"></div>
+  <div class="span9">
+    <div class="row-fluid dashed_row">
+      <div class="label-price span2">
+        <input id="apartment_water_price_type_2" name="apartment[water_price_type]" type="radio" value="2">
+        <span style="width: 100px;">เหมาจ่าย</span>
+      </div>
+      <div class="input-price span7">
+        <%= f.text_field :water_price_monthly_per_person, :class => "input-mini price-input" %>
+
+        บาทต่อคน/เดือน
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span1"></div>
+  <div class="span9">
+    <div class="row-fluid dashed_row">
+      <div class="label-price span2">
+        <input id="apartment_water_price_type_3" name="apartment[water_price_type]" type="radio" value="3">
+        <span style="width: 100px;">เหมาจ่าย</span>
+      </div>
+      <div class="input-price span7">
+        <%= f.text_field :water_price_monthly_per_room, :class => "input-mini price-input" %>
+
+        บาทต่อห้อง/เดือน
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span1"></div>
+  <div class="span9">
+    <div class="row-fluid last_dashed_row">
+      <div class="label-price span3">
+        <input id="apartment_water_price_type_4" name="apartment[water_price_type]" type="radio" value="4">
+        <span style="width: 200px;">ตามมิเตอร์การประปา</span>
+      </div>
+
+      <div class="input-price span8">
+        <%= f.text_field :water_price_remark, :class => "input-large price-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%#= f.input :water_price_type, :as => :radio_buttons,
+            :collection => [["1", 'ตามยูนิตที่ใช้'], ["2", 'เหมาจ่าย'], ['3', "เหมาจ่าย"], ['4', "ตามมิเตอร์การประปา"]],
+            :label_method => :last,
+            :value_method => :first %>
+
+<div class="row-fluid">
+  <div class="price-label control-label span1">ค่าไฟ</div>
+  <div class="span9">
+    <div class="row-fluid dashed_row">
+      <div class="label-price span2">
+        <input id="apartment_water_price_type_1" name="apartment[water_price_type]" type="radio" value="1">
+        <span style="width: 100px;">ตามยูนิตที่ใช้</span>
+      </div>
+      <div class="input-price span4">
+        <%= f.text_field :electric_price, :class => "input-mini price-input" %>
+
+        บาทต่อยูนิต
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="row-fluid">
+  <div class="span1"></div>
+  <div class="span9">
+    <div class="row-fluid last_dashed_row">
+      <div class="label-price span3">
+        <input id="apartment_water_price_type_4" name="apartment[water_price_type]" type="radio" value="4">
+        <span style="width: 200px;">ตามมิเตอร์การไฟฟ้า</span>
+      </div>
+
+      <div class="input-price span8">
+        <%= f.text_field :electric_price_remark, :class => "input-large price-input" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="form-horizontal">
+  <%= f.input :deposit, input_html: {class: 'input-large'} %>
+  <%= f.input :advance_fee, input_html: {class: 'input-large'} %>
+  <%= f.input :phone_price, input_html: {class: 'input-large'} %>
+  <%= f.input :internet_price, input_html: {class: 'input-large'} %>
+</div>
+
+

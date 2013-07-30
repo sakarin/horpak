@@ -1,5 +1,7 @@
 Horpak::Application.routes.draw do
 
+
+
   resources :central_facilities
 
 
@@ -39,7 +41,22 @@ Horpak::Application.routes.draw do
 
   end
 
-  resources :apartments
+  resources :apartments do
+
+    resources :images do
+      collection do
+        post :sort
+      end
+    end
+
+    resource :rooms do
+      collection do
+        post :sort
+      end
+    end
+  end
+
+  resources :images
 
 
 

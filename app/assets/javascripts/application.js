@@ -11,9 +11,18 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require jasny-bootstrap
 //= require_tree .
 //= require bootstrap-wysihtml5
+
+//= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
+//= require best_in_place
+//= require jquery_nested_form
+//= require application_jquery
+
+
 

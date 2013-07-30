@@ -1,0 +1,55 @@
+<div class="title-group">
+  <div class="title">
+    <h3>
+      <div class="RG"></div>
+      ส่ิงอำนวยความสะดวก
+    </h3>
+  </div>
+</div>
+<div class="control-group">
+  <table class="inline-inputs bare">
+    <tbody>
+    <%= hidden_field_tag 'apartment[facility_ids][]', nil %>
+    <% Facility.all.each_slice(3) do |slice| %>
+        <tr>
+          <% slice.each do |facility| %>
+              <td width="33%">
+                <label class="checkbox">
+                  <%= check_box_tag 'apartment[facility_ids][]', facility.id, @apartment.facility_ids.include?(facility.id), id: dom_id(facility) %>
+                  <%= facility.name %>
+                </label>
+              </td>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="title-group">
+  <div class="title">
+    <h3>
+      <div class="RG"></div>
+      ส่ิงอำนวยความสะดวกส่วนกลาง
+    </h3>
+  </div>
+</div>
+<div class="control-group">
+  <table class="inline-inputs bare">
+    <tbody>
+    <%= hidden_field_tag "apartment[central_facility_ids][]", nil %>
+    <% CentralFacility.all.each_slice(3) do |slice| %>
+        <tr>
+          <% slice.each do |facility| %>
+              <td width="33%">
+                <label class="checkbox">
+                  <%= check_box_tag "apartment[central_facility_ids][]", facility.id, @apartment.central_facility_ids.include?(facility.id), id: dom_id(facility) %>
+                  <%= facility.name %>
+                </label>
+              </td>
+          <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -2,6 +2,9 @@ class ApartmentsController < ApplicationController
   # GET /apartments
   # GET /apartments.json
   def index
+    @apartments = Apartment.where("name IS NULL ")
+    @apartments.each {|a| a.destroy}
+
     @apartments = Apartment.all
 
     respond_to do |format|
@@ -10,31 +13,23 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  # GET /apartments/1
-  # GET /apartments/1.json
-  def show
-    @apartment = Apartment.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @apartment }
-    end
-  end
-
   # GET /apartments/new
   # GET /apartments/new.json
   def new
-    @apartment = Apartment.new
+    #@apartment = Apartment.new
+    #1.times { @apartment.rooms.build }
+    #@apartment.save
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @apartment }
-    end
+
+    @apartment = Apartment.create
+    redirect_to edit_apartment_url(@apartment)
+
   end
 
   # GET /apartments/1/edit
   def edit
     @apartment = Apartment.find(params[:id])
+
   end
 
   # POST /apartments
@@ -44,11 +39,12 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.save
-        format.html { redirect_to @apartment, notice: 'Apartment was successfully created.' }
-        format.json { render json: @apartment, status: :created, location: @apartment }
+        format.html { redirect_to apartments_url, notice: 'Apartment was successfully updated.' }
+        format.js { render 'images/create', :locals => {:image => @apartment.images.last } }
       else
         format.html { render action: "new" }
         format.json { render json: @apartment.errors, status: :unprocessable_entity }
+
       end
     end
   end
@@ -60,8 +56,8 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.update_attributes(params[:apartment])
-        format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to apartments_url, notice: 'Apartment was successfully updated.' }
+        format.js { render 'images/create', :locals => {:image => @apartment.images.last } }
       else
         format.html { render action: "edit", notice: @apartment.errors }
         format.json { render json: @apartment.errors, status: :unprocessable_entity }
@@ -80,8 +76,6 @@ class ApartmentsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-
 
   def dynamic_amphurs
     @amphurs = Amphur.where(:province_id => params[:province_id]).order("name")

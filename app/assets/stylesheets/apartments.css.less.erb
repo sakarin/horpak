@@ -1,0 +1,197 @@
+.new_apartment .form-horizontal .control-label, .edit_apartment .form-horizontal .control-label {
+  width: 85px;
+  text-align: left;
+}
+
+.new_apartment .form-horizontal .controls, .edit_apartment .form-horizontal .controls {
+  margin-left: 5px;
+}
+
+#apartment_description{
+  width: 810px;
+  height: 200px;
+}
+
+.apartment_description .control-label {
+  display: none;
+}
+
+.grouped_input span {
+  float: left;
+  margin-right: 10px;
+  width: 168px;
+}
+
+.grouped_input label {
+  padding-top: 0;
+  float: left;
+  width: 85px;
+  font-weight: bold;
+}
+
+.form-apartment-address{
+  input {
+    width: 150px;
+  }
+  label {
+    font-weight: normal;
+  }
+}
+
+.indent {
+  margin-left: 85px;
+}
+
+#apartment_province_id, #apartment_amphur_id, #apartment_district_id{
+  width: 170px;
+}
+
+#map_canvas {
+  margin: auto;
+  height: 310px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+
+#images .handle {
+    font-size: 12px;
+    color: #777;
+    cursor: move;
+}
+
+.image-name {
+    padding-top: 5px;
+    color: #333333;
+
+}
+
+.image {
+    position: relative;
+    display: block;
+    float: left;
+    list-style-type: none;
+
+    width: 222px;
+    padding: 5px 0;
+    margin: 4px;
+    background-color: white;
+    text-align: center;
+    background: white;
+
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+}
+
+#images {
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.imagecontainer {
+    padding-top: 5px;
+
+}
+
+#preview, #child_preview, #vtour_preview {
+    margin-top: 15px !important;
+    border: 1px solid #ccc;
+    //padding: 20px 0 12px 12px;
+    padding-bottom: 12px;
+    border-radius: 4px;
+    background: #EFEFEA;
+    padding-top: 20px;
+    min-height: 100px;
+
+}
+
+#calltouploadpic {
+    display: block;
+    margin: 20px auto 0;
+    text-align: center;
+    width: 320px;
+    font-smooth: always;
+}
+
+.delete_image {
+    width: 30px;
+    height: 30px;
+    background: url("/assets/icons/close_button.png") no-repeat 0 0;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: none;
+}
+
+.sortable_placeholder {
+    width: 220px;
+    height: 230px;
+    border: 1px dashed #aaa;
+    background: #ddd;
+    margin: 12px 10px 0 0;
+    float: left;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1)
+}
+
+.spinner {
+  display:    none;
+  position:   fixed;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: rgba( 255, 255, 255, .8 )
+  url(<%= asset_path 'loading.gif' %>)
+50% 50%
+no-repeat;
+}
+
+#room-table .room_type {
+    width: 120px;
+}
+
+.col_room_size {
+    width: 40px;
+}
+
+#apartment_rooms_attributes_0_room_type{
+    width: 110px;
+}
+
+.rental_input {
+    display: none;
+}
+
+.room_price {
+    width: 60px;
+}
+
+#room-table th {
+    background-color: #E5E5E5;
+    padding: 5px 0;
+    width: 156px;
+    font-size: 12px;
+    /*border: 1px solid #cecece;*/
+    text-align: center;
+    vertical-align: middle;
+}
+
+#room-table td {
+    text-align: center;
+    /*border: 1px solid #cecece;*/
+    vertical-align: top;
+    font-size: 12px;
+    background: #FFF;
+}
+
+#room-table td.first {
+    width: 50px;
+    background: url("/assets/icons/drag.png") no-repeat 10px 10px #fff;
+    cursor: move;
+}
+
+
+

@@ -1,0 +1,38 @@
+<h3>ใส่รูปภาพประกอบ</h3>
+
+<div id="spinner" class="spinner" style="display:none;">
+</div>
+
+
+<%= f.fields_for Image.new do |f| %>
+    <span class="btn btn-success fileinput-button">
+                    <i class="icon-plus icon-white"></i>
+                    <span>อัพโหลดรูปภาพ</span>
+      <%= file_field_tag('apartment_images_attachment', multiple: true, name: "apartment[images_attributes][][attachment]") %>
+        </span>
+    <span style="padding-left: 10px;font-size: 12px; text-align: center;">(สามารถอัพโหลดได้หลายๆรูปภาพในคราวเดียว)</span>
+<% end %>
+
+<div class="clearfix"></div>
+
+<script id="template-upload" type="text/x-tmpl">
+  <div class="upload">
+  </div>
+</script>
+
+
+<div id="preview" class="clearfix">
+
+
+  <ul id="images" data-update-url="<%= sort_apartment_images_url(@apartment) %>">
+    <% unless @apartment.images.blank? %>
+        <%= render @apartment.images %>
+    <% end %>
+  </ul>
+
+
+  <% if @apartment.images.blank? %>
+      <span id="calltouploadpic"><%= image_tag "icons/addpic-big.png", :alt => "Addpic-big" %>กดปุ่มใส่รูปภาพ <b>หรือ
+        <br>ลากรูปภาพมาวางบริเวณนี้ เพี่ออัพโหลด</b></span>
+  <% end %>
+</div>

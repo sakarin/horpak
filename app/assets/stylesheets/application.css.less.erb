@@ -13,6 +13,7 @@
      *= require_tree .
      *= require jasny-bootstrap
      *= require bootstrap-wysihtml5
+     *= require gmaps4rails
     */
 
     @font-face {
@@ -63,7 +64,7 @@
     }
 
     .RG {
-        background: url('//ssl.gstatic.com/ac/security/activity_icons_4_915bbe063236330b.png') no-repeat left top;
+        background: url(<%= asset_path 'activity_icons_4_915bbe063236330b.png' %>) no-repeat left top;
         background-position: -16px -128px;
         height: 32px;
         width: 32px;
@@ -123,6 +124,14 @@
     .bare {
         margin-bottom: 20px;
     }
+
+    .fee .indent label {
+        float: none;
+        font-weight: normal;
+        font-size: 12px;
+    }
+
+
 
 
 

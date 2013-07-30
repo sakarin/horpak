@@ -11,7 +11,54 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130708114646) do
+ActiveRecord::Schema.define(:version => 20130727153243) do
+
+  create_table "_apartments_old_20130715", :force => true do |t|
+    t.string   "name"
+    t.string   "staff"
+    t.string   "telephone"
+    t.string   "email"
+    t.string   "address"
+    t.string   "road"
+    t.string   "street"
+    t.integer  "province_id"
+    t.integer  "amphur_id"
+    t.integer  "district_id"
+    t.integer  "postcode"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.text     "description"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "water_price_type"
+    t.string   "water_price"
+    t.string   "water_price_monthly_per_person"
+    t.string   "water_price_monthly_per_room"
+    t.string   "water_price_remark"
+    t.integer  "electric_price_type"
+    t.string   "electric_price"
+    t.string   "electric_price_remark"
+    t.string   "deposit"
+    t.string   "advance_fee"
+    t.string   "phone_price"
+    t.string   "internet_price"
+  end
+
+  create_table "_rooms_old_20130728", :force => true do |t|
+    t.integer  "apartment_id"
+    t.string   "name"
+    t.integer  "type"
+    t.string   "size"
+    t.boolean  "monthly"
+    t.integer  "min_price_permonth"
+    t.integer  "max_price_permonth"
+    t.boolean  "daily"
+    t.integer  "min_price_perday"
+    t.integer  "max_price_perday"
+    t.boolean  "available"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "amphurs", :force => true do |t|
     t.string  "code"
@@ -32,11 +79,25 @@ ActiveRecord::Schema.define(:version => 20130708114646) do
     t.integer  "amphur_id"
     t.integer  "district_id"
     t.integer  "postcode"
-    t.string   "latitude"
-    t.string   "longitude"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "water_price_type"
+    t.string   "water_price"
+    t.string   "water_price_monthly_per_person"
+    t.string   "water_price_monthly_per_room"
+    t.string   "water_price_remark"
+    t.integer  "electric_price_type"
+    t.string   "electric_price"
+    t.string   "electric_price_remark"
+    t.string   "deposit"
+    t.string   "advance_fee"
+    t.string   "phone_price"
+    t.string   "internet_price"
+    t.boolean  "gmaps"
+    t.integer  "gmaps_zoom"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "central_facilities", :force => true do |t|
@@ -73,6 +134,15 @@ ActiveRecord::Schema.define(:version => 20130708114646) do
     t.datetime "updated_at",   :null => false
   end
 
+  create_table "images", :force => true do |t|
+    t.string   "name"
+    t.string   "attachment"
+    t.integer  "position"
+    t.integer  "apartment_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "provinces", :force => true do |t|
     t.string  "code"
     t.string  "name"
@@ -89,6 +159,23 @@ ActiveRecord::Schema.define(:version => 20130708114646) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
+
+  create_table "rooms", :force => true do |t|
+    t.integer  "apartment_id"
+    t.string   "name"
+    t.integer  "room_type"
+    t.string   "size"
+    t.boolean  "monthly"
+    t.integer  "min_price_permonth"
+    t.integer  "max_price_permonth"
+    t.boolean  "daily"
+    t.integer  "min_price_perday"
+    t.integer  "max_price_perday"
+    t.integer  "position"
+    t.boolean  "available"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

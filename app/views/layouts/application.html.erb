@@ -6,6 +6,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails3 Bootstrap Devise Cancan" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%#= stylesheet_link_tag 'gmaps4rails' %>
     <%= csrf_meta_tags %>
     <%= yield(:head) %>
   </head>
@@ -31,6 +32,7 @@
             </div>
           </div>
           <footer>
+            <%= yield :scripts %>
           </footer>
         </div>
       </div> <!--! end of .container -->
