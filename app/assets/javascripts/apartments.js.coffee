@@ -66,13 +66,55 @@ jQuery ->
       $(this).find("a:first").hide()
 
 
-#  $("#apartment_rooms_attributes_0_monthly").click ->
-#      $(".rental_input").toggle()
+
+  $(".monthly-rate").click ->
+    $(this).closest(".rental_fee").find(".rental_monthly_rate").toggle()
+
+  $(".daily-rate").click ->
+    $(this).closest(".rental_fee").find(".rental_daily_rate").toggle()
+
 
   $('#room-table').sortable
     items: "tbody tr"
     axis: "y"
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
+
+  water_price_click = ->
+    other_text = $(this).closest('#price-water').find('.water-price-input')
+    this_text = $(this).closest('.row-fluid').find('.water-price-input')
+    other_selected = $(this).closest('#price-water').find('.water-price-select')
+    this_selected = $(this).closest('.row-fluid').find('.water-price-select')
+    other_text.val('')
+    other_text.attr('readonly','true')
+
+    this_text.removeAttr('readonly')
+    this_text.val('')
+
+    this_selected.attr('checked','checked')
+    other_selected.removeAttr('disabled')
+
+  $('.water-price-select').on('click', water_price_click);
+  $('.water-price-input').on('click', water_price_click);
+
+  electric_price_click = ->
+    other_text = $(this).closest('#price-electric').find('.electric-price-input')
+    this_text = $(this).closest('.row-fluid').find('.electric-price-input')
+    other_selected = $(this).closest('#price-electric').find('.electric-price-select')
+    this_selected = $(this).closest('.row-fluid').find('.electric-price-select')
+    other_text.val('')
+    other_text.attr('readonly','true')
+
+    this_text.removeAttr('readonly')
+    this_text.val('')
+
+    this_selected.attr('checked','checked')
+    other_selected.removeAttr('disabled')
+
+  $('.electric-price-select').on('click', electric_price_click);
+  $('.electric-price-input').on('click', electric_price_click);
+
+
+
 
 

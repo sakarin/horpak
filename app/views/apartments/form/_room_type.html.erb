@@ -35,15 +35,25 @@
           </td>
           <td><%= f.text_field :size, :class => 'col_room_size' %></td>
           <td class="rental_fee">
-            <%= f.check_box :monthly %> ระบุค่าเช่า
-            <div class="rental_input clearfix">
+            <%= f.check_box :monthly, :class => "monthly-rate" %> ระบุค่าเช่า
+            <div class="rental_monthly_rate clearfix <%= 'dont-show' unless f.object.monthly? %>">
               <label class="price_input">ราคาเริ่มต้น</label>
               <%= f.text_field :min_price_permonth, :class => "room_price" %>
               <label class="price_input">ราคาสูงสุด</label>
               <%= f.text_field :max_price_permonth, :class => "room_price" %>
             </div>
           </td>
-          <td></td>
+
+          <td class="rental_fee">
+            <%= f.check_box :daily, :class => "daily-rate" %> ระบุค่าเช่า
+            <div class="rental_daily_rate clearfix <%= 'dont-show' unless f.object.daily? %>">
+              <label class="price_input">ราคาเริ่มต้น</label>
+              <%= f.text_field :min_price_perday, :class => "room_price" %>
+              <label class="price_input">ราคาสูงสุด</label>
+              <%= f.text_field :max_price_perday, :class => "room_price" %>
+            </div>
+          </td>
+
           <td><%= f.check_box :available %></td>
           <td>
             <%= f.link_to_remove "ลบ" %>
