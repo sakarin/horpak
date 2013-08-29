@@ -220,7 +220,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
 
-  config.omniauth :facebook, "161168757404399", "4d853383b44cc101cdb91b12b25df8cf", :image_size => 'normal'
+  config.omniauth :facebook, "509537062459834", "eb1bcffe8fb27d8802f2753ee64c7572", :image_size => 'normal'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
