@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :apartments
+
   #devise :omniauthable
 
   def self.from_omniauth(auth)

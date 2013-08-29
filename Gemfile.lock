@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
+    acts_as_commentable (3.0.1)
     acts_as_list (0.2.0)
       activerecord (>= 3.0)
     addressable (2.3.5)
@@ -165,6 +166,7 @@ GEM
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
     orm_adapter (0.4.0)
+    pg (0.15.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -244,6 +246,10 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
+    squeel (1.0.18)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+      polyamorous (~> 0.5.0)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
       ref
@@ -280,6 +286,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_commentable (= 3.0.1)
   acts_as_list
   annotate
   best_in_place
@@ -307,6 +314,7 @@ DEPENDENCIES
   libv8
   nested_form
   omniauth-facebook (= 1.4.1)
+  pg
   quiet_assets
   rails (= 3.2.13)
   ransack
@@ -319,6 +327,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   simple_form
   sqlite3
+  squeel
   therubyracer
   thin
   twitter-bootstrap-rails

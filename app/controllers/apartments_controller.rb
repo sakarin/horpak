@@ -1,11 +1,12 @@
 class ApartmentsController < ApplicationController
-  # GET /apartments
-  # GET /apartments.json
+  load_and_authorize_resource
+
   def index
-    @apartments = Apartment.where("name IS NULL ")
+    #@apartments = Apartment.belongs_to_user(@current_user).name_is_nil
+    @apartments = @current_user.apartments.name_is_nil
     @apartments.each {|a| a.destroy}
 
-    @apartments = Apartment.all
+    @apartments = @current_user.apartments
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,27 +14,16 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  # GET /apartments/new
-  # GET /apartments/new.json
   def new
-    #@apartment = Apartment.new
-    #1.times { @apartment.rooms.build }
-    #@apartment.save
-
-
-    @apartment = Apartment.create
+    @apartment = Apartment.create(:user_id => @current_user.id)
     redirect_to edit_apartment_url(@apartment)
-
   end
 
-  # GET /apartments/1/edit
   def edit
     @apartment = Apartment.find(params[:id])
 
   end
 
-  # POST /apartments
-  # POST /apartments.json
   def create
     @apartment = Apartment.new(params[:apartment])
 
@@ -49,8 +39,6 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  # PUT /apartments/1
-  # PUT /apartments/1.json
   def update
     @apartment = Apartment.find(params[:id])
 
@@ -65,8 +53,6 @@ class ApartmentsController < ApplicationController
     end
   end
 
-  # DELETE /apartments/1
-  # DELETE /apartments/1.json
   def destroy
     @apartment = Apartment.find(params[:id])
     @apartment.destroy
@@ -89,6 +75,13 @@ class ApartmentsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def show
+    @apartment = Apartment.find(params[:id])
+    @commentable = @apartment
+    @comments = @commentable.comments
+    @comment = Comment.new
   end
 
 end

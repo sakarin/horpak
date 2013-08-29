@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '1.9.3'
+
 gem 'rails', '3.2.13'
 gem 'sqlite3'
 group :assets do
@@ -43,6 +43,7 @@ group :development, :test do
 end
 group :production do
   gem 'unicorn'
+  gem 'pg'
 end
 group :test do
   gem 'capybara'
@@ -68,3 +69,6 @@ gem 'acts_as_list'
 gem 'best_in_place'
 
 gem "nested_form"
+gem 'squeel'
+
+gem 'acts_as_commentable', '3.0.1'

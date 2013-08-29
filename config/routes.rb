@@ -36,12 +36,15 @@ Horpak::Application.routes.draw do
   root :to => "home#index"
 
   resources :users
+  resources :comments
+
 
   namespace :dashboard do
 
   end
 
   resources :apartments do
+    resources :comments
 
     resources :images do
       collection do

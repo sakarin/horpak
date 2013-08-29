@@ -5,6 +5,7 @@ class Apartment < ActiveRecord::Base
   attr_accessible :facility_ids, :central_facility_ids
 
   attr_accessible :latitude, :longitude, :gmaps_zoom
+  attr_accessible :user_id
 
   attr_accessible :images_attributes
 
@@ -14,13 +15,15 @@ class Apartment < ActiveRecord::Base
 
   validates_presence_of :name, :province_id, :amphur_id, :district_id, on: :update, if: :update_image_with_out_filed?
 
+  acts_as_commentable
+
 
 
   belongs_to :district
   belongs_to :amphur
   belongs_to :province
 
-
+  belongs_to :user
 
 
   has_many :images
@@ -38,10 +41,18 @@ class Apartment < ActiveRecord::Base
     else
       true
     end
-
-
-
   end
 
+  scope :belongs_to_user, lambda { |user| where("user_id = ?", user.id) }
+
+  scope :name_is_nil, where("name is null")
+
+  #scope :discontinued, where(:discontinued => true)
+  #
+  #def self.cheaper_than(price)
+  #  where("price < ?", price)
+  #end
+  #
+  #scope :cheap, cheaper_than(5)
 
 end

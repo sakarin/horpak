@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130727153243) do
+ActiveRecord::Schema.define(:version => 20130803180954) do
 
   create_table "_apartments_old_20130715", :force => true do |t|
     t.string   "name"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130727153243) do
     t.integer  "gmaps_zoom"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "user_id"
   end
 
   create_table "central_facilities", :force => true do |t|
@@ -112,6 +113,20 @@ ActiveRecord::Schema.define(:version => 20130727153243) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end
+
+  create_table "comments", :force => true do |t|
+    t.string   "title",            :limit => 50, :default => ""
+    t.text     "comment"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.integer  "user_id"
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+  end
+
+  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
+  add_index "comments", ["commentable_type"], :name => "index_comments_on_commentable_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "districts", :force => true do |t|
     t.string  "code"

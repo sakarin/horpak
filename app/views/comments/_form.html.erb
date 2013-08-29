@@ -1,0 +1,12 @@
+<%= simple_form_for [@commentable, @comment] do |f| %>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.hidden_field :commentable_id, :value => @apartment.id %>
+    <%= f.hidden_field :commentable_type, :value => @apartment.class  %>
+
+    <%= f.input :title %>
+    <%= f.input :comment, :as => :text, input_html: {class: 'wysihtml5', :cols => 500, :rows => 3} %>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class => "btn btn-large btn-success" %>
+    </div>
+<% end %>
