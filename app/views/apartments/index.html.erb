@@ -1,49 +1,31 @@
-<h1>Listing apartments</h1>
+<div class="span11">
+  <div class="row-fluid">
+    <div class="span8">
+      <h1><%= t('activerecord.models.apartment') %></h1>
+    </div>
+    <div class="span4 pull-bottom">
+      <%= link_to "เพิ่ม#{t('activerecord.models.apartment')}"  , new_apartment_path, :class => "btn btn-success pull-right" %>
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Staff</th>
-    <th>Telephone</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Road</th>
-    <th>Street</th>
-    <th>Province</th>
-    <th>Amphur</th>
-    <th>District</th>
-    <th>Postcode</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
 
-<% @apartments.each do |apartment| %>
-  <tr>
-    <td><%= apartment.name %></td>
-    <td><%= apartment.staff %></td>
-    <td><%= apartment.telephone %></td>
-    <td><%= apartment.email %></td>
-    <td><%= apartment.address %></td>
-    <td><%= apartment.road %></td>
-    <td><%= apartment.street %></td>
-    <td><%= apartment.province_id %></td>
-    <td><%= apartment.amphur_id %></td>
-    <td><%= apartment.district_id %></td>
-    <td><%= apartment.postcode %></td>
-    <td><%= apartment.latitude %></td>
-    <td><%= apartment.longitude %></td>
-    <td><%= apartment.description %></td>
-    <td><%= link_to 'Show', apartment %></td>
-    <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
-    <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+  <table class="table table-bordered">
+    <tr>
+      <th>ชื่อ</th>
+      <th>จำนวนการเข้าชม</th>
+      <th>เครื่องมือ</th>
+    </tr>
 
-<br />
+    <% @apartments.each do |apartment| %>
+        <tr>
+          <td><%= link_to apartment.name, edit_apartment_path(apartment) %></td>
+          <td></td>
+          <td><%= link_to 'แก้ไข', edit_apartment_path(apartment), :class => "btn btn-primary btn-mini" %>
+            <%= link_to 'ลบ', apartment, method: :delete, data: {confirm: t('notice.delete_confirm')}, :class => "btn btn-danger btn-mini" %></td>
+        </tr>
+    <% end %>
+  </table>
 
-<%= link_to 'New Apartment', new_apartment_path %>
+  <%= will_paginate @apartments, :renderer => BootstrapPagination::Rails %>
+
+</div>
