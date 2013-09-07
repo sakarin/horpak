@@ -2,11 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'sqlite3'
-group :assets do
-  gem 'sass-rails', '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-end
+
 gem 'jquery-rails', '2.1.0'
 gem 'cancan'
 
@@ -14,13 +10,15 @@ gem 'figaro'
 gem 'libv8'
 gem 'rolify'
 gem 'simple_form'
+
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform => :ruby, :require => "v8"
-  gem 'twitter-bootstrap-rails', '2.2.6'
-  #gem 'bootstrap-google-sass'
+  gem 'twitter-bootstrap-rails'
+  gem 'sass-rails', '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
-
   gem 'jasny_bootstrap_extension_rails'
 end
 group :development do
@@ -43,6 +41,7 @@ group :development, :test do
 end
 group :production do
   gem 'unicorn'
+  gem 'capistrano'
   gem 'pg'
 end
 group :test do

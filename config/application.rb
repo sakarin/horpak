@@ -20,11 +20,11 @@ module Horpak
 
     # don't generate RSpec tests for views and helpers
     config.generators do |g|
-      
+
       g.test_framework :rspec, fixture: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
-      
-      
+
+
       g.view_specs false
       g.helper_specs false
     end
@@ -89,9 +89,9 @@ module Horpak
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
     config.assets.precompile += %w( .svg .eot .woff .ttf )
-    config.assets.precompile += %w( *.css *.js *.css.erb )
+    config.assets.precompile += %w( *.css *.js *.css.erb *.less.erb *.css.scss )
 
-    config.assets.precompile += ["redactor-rails/*"]
+    #config.assets.precompile += ["redactor-rails/*"]
 
   end
 end
