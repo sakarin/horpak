@@ -17,7 +17,7 @@ gem 'simple_form'
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform => :ruby, :require => "v8"
-  gem 'twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails', '2.2.6'
   #gem 'bootstrap-google-sass'
   gem 'jquery-fileupload-rails'
 
