@@ -18,7 +18,7 @@ group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform => :ruby, :require => "v8"
   gem 'twitter-bootstrap-rails'
-  gem 'bootstrap-google-sass'
+  #gem 'bootstrap-google-sass'
   gem 'jquery-fileupload-rails'
 
   gem 'jasny_bootstrap_extension_rails'
