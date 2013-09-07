@@ -1,0 +1,153 @@
+<div id="category">
+  <ul id="myTab" class="nav nav-tabs" data-tabs="tabs">
+    <li class="active"><a href="#home" data-toggle="tab">ค้นหาตามจังหวัด</a></li>
+    <li class=""><a href="#profile" data-toggle="tab">ค้นหาเชิงพาณิชย์</a></li>
+    <li class=""><a href="#dropdown1" data-toggle="tab">ค้นหาโครงการใหม่</a></li>
+
+
+  </ul>
+
+  <div id="search-mainpage">
+    <div class="clearfix"></div>
+    <div id="myTabContent" class="tab-content">
+
+      <div class="tab-pane fade active in" id="home">
+        <h2>ค้นหาตามจังหวัด</h2>
+        <%= search_form_for [@search], :url => home_index_path, :html => {:method => :get, :class => "f-filter"} do |f| %>
+            <%= f.collection_select(:province_id_eq, Province.order(:name), :id, :name, {include_blank: "เลือกจังหวัด"}, {:class => 'dropdown'}) %>
+            <%= f.select :amphur_id_eq, "", {include_blank: "เลือกอำเภอ"}, {:class => "dropdown", :id => 'apartment_amphur_id'} %>
+
+            <%= f.hidden_field(:rooms_min_price_permonth_gteq, :value => "") %>
+            <%= f.hidden_field(:rooms_max_price_permonth_lteq, :value => "") %>
+
+            <%= f.hidden_field(:rooms_min_price_perday_gteq, :value => "") %>
+            <%= f.hidden_field(:rooms_max_price_perday_lteq, :value => "") %>
+
+            <select name="room[price]" id="room-price" class="dropdown">
+              <option>ช่วงราคา</option>
+              <optgroup label="ราคาต่อเดือน">
+                <option value="1">0 - 2,000 บาทต่อเดือน</option>
+                <option value="2">2,000 - 4,000 บาทต่อเดือน</option>
+                <option value="3">4,000 - 8,000 บาทต่อเดือน</option>
+                <option value="4">มากกว่า 8,000 บาทต่อเดือน</option>
+              </optgroup>
+              <optgroup label="ราคารายวัน">
+                <option value="5">0 - 500 บาทต่อวัน</option>
+                <option value="6">500 - 1,000 บาทต่อวัน</option>
+                <option value="7">1,000 - 1,500 บาทต่อวัน</option>
+                <option value="8">มากกว่า 1,500 บาทต่อวัน</option>
+              </optgroup>
+            </select>
+
+            <%= link_to_submit(class: 'btn btn-warning btn-large button-x') do %>
+                <i class="icon-search"></i> ค้นหา
+            <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="tab-pane fade" id="profile">
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
+          labore
+          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
+        </p>
+      </div>
+      <div class="tab-pane fade" id="dropdown1">
+        <p>
+          vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork
+          sustainable tofu synth chambray yr.</p>
+      </div>
+
+    </div>
+
+
+    <div class="clearfix"></div>
+
+  </div>
+
+</div>
+
+
+
+<div id="category">
+  <div id="general-content" class="category-left first_column">
+    <div id="result_panel">
+      <div class="general-bar">
+        <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+        <p>ประกาศ อสังหาฯ แนะนำทั่วไป</p>
+        <%= image_tag "icon-all.png", :width => '53', :height => '19', :class => 'general-more' %>
+      </div>
+
+      <%= render 'home/exclusive' %>
+    </div>
+
+  </div>
+
+  <div class="category-right">
+    <img alt="Web-banner01" height="173" src="/assets/web-banner01.jpg" style="margin:32px 0 20px 0;" width="300">
+    <img alt="Web-banner02" height="127" src="/assets/web-banner02.jpg" style="margin:25px 0 0 0;" width="300">
+
+  </div>
+
+
+  <div id="general-content" class="category-left first_column">
+    <div id="result_panel">
+      <% unless @apartments.nil? %>
+
+          <div class="general-bar">
+            <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+            <p>ประกาศ อสังหาฯ แนะนำทั่วไป</p>
+            <%= image_tag "icon-all.png", :width => '53', :height => '19', :class => 'general-more' %>
+          </div>
+
+
+          <% @apartments.each do |apartment| %>
+              <%= render 'apartments', :a => apartment %>
+          <% end %>
+
+
+      <% end %>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="clearfix"></div>
+

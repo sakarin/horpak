@@ -20,8 +20,20 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+
+
+  process :resize_to_fit => [624, 415]
+
+  version :square do
+    process resize_to_fill: [40, 40]
+  end
+
   version :thumb do
-    process resize_to_fill: [200, 200]
+    process resize_to_fill: [120, 90]
+  end
+
+  version :thumbnail do
+    process resize_to_fill: [160, 120]
   end
 
 

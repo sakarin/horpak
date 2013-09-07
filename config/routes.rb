@@ -35,6 +35,10 @@ Horpak::Application.routes.draw do
 
   root :to => "home#index"
 
+  resources :home do
+    #match 'search' => 'home#search', :via => [:get, :post], :as => :search
+  end
+
   resources :users
   resources :comments
 

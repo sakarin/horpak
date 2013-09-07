@@ -13,7 +13,8 @@ class Apartment < ActiveRecord::Base
   has_many :rooms
   accepts_nested_attributes_for :rooms, allow_destroy: true
 
-  validates_presence_of :name, :province_id, :amphur_id, :district_id, on: :update, if: :update_image_with_out_filed?
+  validates_presence_of :name, :province_id, :amphur_id, :district_id, :postcode, on: :update, if: :update_image_with_out_filed?
+  validates_presence_of :address, :street, :road, :telephone, on: :update, if: :update_image_with_out_filed?
 
   acts_as_commentable
 

@@ -1,4 +1,5 @@
 class Image < ActiveRecord::Base
+
   attr_accessible :apartment_id, :attachment, :name, :position
 
   mount_uploader :attachment, AttachmentUploader

@@ -1,5 +1,3 @@
-
-
 th:
   devise:
     button:
@@ -46,17 +44,10 @@ th:
         postcode: "รหัสไปรษณีย์"
 
         water_price_type: "ค่าน้ำ"
-#        water_price:
-#        water_price_monthly_per_person:
-#        water_price_monthly_per_room:
-#        water_price_remark:
-#        electric_price_type:
-#        electric_price:
-#        electric_price_remark:
-#        deposit:
-#        advance_fee:
-#        phone_price:
-#        internet_price:
+        deposit: "เงินมัดจำ"
+        advance_fee: "จ่ายล่วงหน้า"
+        phone_price: "ค่าโทรศัพท์"
+        internet_price: "อินเตอร์เน็ต"
       facility:
         name: "ชื่อ"
       central_facility:

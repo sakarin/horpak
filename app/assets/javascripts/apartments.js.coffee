@@ -59,7 +59,7 @@ jQuery ->
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
 
-  $(".image").bind "mouseover mouseout", (event) ->
+  $(".image").live "mouseover mouseout", (event) ->
     if event.type is "mouseover"
       $(this).find("a:first").show()
     else
@@ -67,10 +67,10 @@ jQuery ->
 
 
 
-  $(".monthly-rate").click ->
+  $(".monthly-rate").live "click", ->
     $(this).closest(".rental_fee").find(".rental_monthly_rate").toggle()
 
-  $(".daily-rate").click ->
+  $(".daily-rate").live "click", ->
     $(this).closest(".rental_fee").find(".rental_daily_rate").toggle()
 
 

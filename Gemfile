@@ -72,3 +72,4 @@ gem "nested_form"
 gem 'squeel'
 
 gem 'acts_as_commentable', '3.0.1'
+gem 'twitter-bootstrap-markup-rails', '0.3.2.2'
