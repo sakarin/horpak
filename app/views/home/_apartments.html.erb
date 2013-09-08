@@ -3,18 +3,23 @@
     <span class="thumbnial">
       <b>
         <i>
-        <img alt="​บ้านกันต์ | Baan Gunn (บางแสน) - อพาร์ทเม้นท์ หอพัก ย่าน " src="http://r0.static.in.th/images/uploaded/201305/20130529/apartment_pictures/thumbnail/3349a6210d4616e4ae4e51dc38761ea5.jpg">
-      </i>
+          <% unless a.images.blank? %>
+              <%= image_tag(a.images.first.attachment_url(:thumbnail)) %>
+          <% else %>
+              <%= image_tag 'thumb/components.png' %>
+          <% end %>
+        </i>
       </b>
     </span>
 
-    <span class="name"><a href="/บ้านกันต์-baan-gunn-บางแสน"> <%= a.name  %></a><img alt="Update" src="http://r1.static.in.th/assets/update.gif"></span>
-    <span class="addr">ถ.มิตรสัมพันธ์ บ้านปึก เมืองชลบุรี ชลบุรี</span>
-    <span class="room_available  ">มีห้องว่าง</span>
-    <div class="pbox span3">
-      <span class="price">4,000 - 4,900 <b>บาท/เดือน</b></span>
+    <span class="name"><a href="/บ้านกันต์-baan-gunn-บางแสน"> <%= a.name %></a><img alt="Update" src="http://r1.static.in.th/assets/update.gif"></span>
+    <span class="addr"><%= "#{a.street} #{a.road} #{a.district.name} #{a.amphur.name} #{a.province.name}" %></span>
+    <span class="room_available  "><%= "มีห้องว่าง" if a.room_available %></span>
 
-      <span class="price">800 <b>บาท/วัน</b></span>
+    <div class="pbox span3">
+      <span class="price"><%= price_rate_permonth(a) %><b> บาท/เดือน</b></span>
+
+      <span class="price"><%= price_rate_perday(a) %> <b>บาท/วัน</b></span>
     </div>
   </li>
 </ul>

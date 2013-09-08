@@ -3,6 +3,7 @@ class Apartment < ActiveRecord::Base
   attr_accessible :water_price_type, :water_price, :water_price_monthly_per_person, :water_price_monthly_per_room, :water_price_remark
   attr_accessible :electric_price_type, :electric_price, :electric_price_remark, :deposit, :advance_fee, :phone_price, :internet_price
   attr_accessible :facility_ids, :central_facility_ids
+  attr_accessible :published_at
 
   attr_accessible :latitude, :longitude, :gmaps_zoom
   attr_accessible :user_id
@@ -11,12 +12,19 @@ class Apartment < ActiveRecord::Base
 
   attr_accessible :rooms_attributes
   has_many :rooms
-  accepts_nested_attributes_for :rooms, allow_destroy: true
+  accepts_nested_attributes_for :rooms, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
 
   validates_presence_of :name, :province_id, :amphur_id, :district_id, :postcode, on: :update, if: :update_image_with_out_filed?
   validates_presence_of :address, :street, :road, :telephone, on: :update, if: :update_image_with_out_filed?
 
   acts_as_commentable
+
+  scope :with_state, lambda { |s| where(:state => s) }
+
+  scope :show, with_state('show')
+  scope :hidden, with_state('hidden')
+  scope :draft, with_state('draft')
+  scope :exclusive, with_state('exclusive')
 
 
 
@@ -55,5 +63,45 @@ class Apartment < ActiveRecord::Base
   #end
   #
   #scope :cheap, cheaper_than(5)
+
+  #scope :available, room_available
+
+  def room_available
+     !self.rooms.where(available: true).blank?
+  end
+
+  def room_price_rate
+    #self.rooms
+  end
+
+  # shipment state machine (see http://github.com/pluginaweek/state_machine/tree/master for details)
+  state_machine :initial => 'draft', :use_transactions => false do
+
+    event :show do
+      transition :from => 'draft', :to => 'show'
+      transition :from => 'hidden', :to => 'show'
+    end
+    event :complete do
+      transition :from => 'show', :to => 'complete'
+    end
+    event :hidden do
+      transition :from => 'show', :to => 'hidden'
+      transition :from => 'exclusive', :to => 'hidden'
+    end
+    event :expire do
+      transition :from => 'show', :to => 'expire'
+      transition :from => 'exclusive', :to => 'expire'
+    end
+    event :exclusive do
+      transition :from => 'show', :to => 'exclusive'
+      transition :from => 'hidden', :to => 'exclusive'
+    end
+    after_transition :to => 'show', :do => :after_show
+    after_transition :to => 'exclusive', :do => :after_show
+  end
+
+  def after_show
+    touch :published_at
+  end
 
 end

@@ -23,6 +23,8 @@
     </thead>
     <tbody>
 
+
+    <% #see more https://github.com/ryanb/nested_form %>
     <%= f.fields_for :rooms, :wrapper => false do |f| %>
         <tr id='<%= "room_#{f.object.id}" %>' class="fields">
           <td class="first" style="width: 39px;">&nbsp;</td>
@@ -65,5 +67,6 @@
   </table>
 
   <%= f.link_to_add "เพิ่มประเภทห้อง", :rooms, :data => {:target => "#room-table"}, :class => "btn btn-primary" %>
+
 
 </div>

@@ -49,6 +49,9 @@ Horpak::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+
+  # bootstrap-wysihtml5-rails double toolbar
+  # see more https://github.com/sferik/rails_admin/issues/1296
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 end

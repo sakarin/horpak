@@ -27,7 +27,7 @@ jQuery ->
   $(".wysihtml5").each (i, elem) ->
     $(elem).wysihtml5()
 
-  $('form').fileupload
+    $('form').fileupload
     dataType: "script"
     add: (e, data) ->
       types = /(\.|\/)(gif|jpe?g|png)$/i
@@ -67,10 +67,10 @@ jQuery ->
 
 
 
-  $(".monthly-rate").live "click", ->
+  $(".monthly-rate").live "toggle", ->
     $(this).closest(".rental_fee").find(".rental_monthly_rate").toggle()
 
-  $(".daily-rate").live "click", ->
+  $(".daily-rate").live "toggle", ->
     $(this).closest(".rental_fee").find(".rental_daily_rate").toggle()
 
 

@@ -21,8 +21,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: horpak_production
+  database: production
   pool: 5
   host: localhost
-  username: horpak
-  password: horpak2556
+  username: username
+  password: password

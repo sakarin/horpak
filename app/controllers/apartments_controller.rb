@@ -2,14 +2,13 @@ class ApartmentsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    #@apartments = Apartment.belongs_to_user(@current_user).name_is_nil
-    @apartments = @current_user.apartments.name_is_nil
-    @apartments.each {|a| a.destroy}
+
+    @current_user.apartments.draft.each {|a| a.destroy}
+
 
     @search = @current_user.apartments.search(params[:q])
     @apartments = @search.result.paginate(:page => params[:page], :per_page => 5)
 
-    #@apartments = @current_user.apartments
 
     respond_to do |format|
       format.html # index.html.erb

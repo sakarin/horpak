@@ -4,6 +4,7 @@ gem 'rails', '3.2.13'
 gem 'sqlite3'
 
 gem 'jquery-rails', '2.1.0'
+
 gem 'cancan'
 
 gem 'figaro'
@@ -14,7 +15,7 @@ gem 'simple_form'
 group :assets do
   gem 'less-rails'
   gem 'therubyracer', :platform => :ruby, :require => "v8"
-  gem 'twitter-bootstrap-rails'
+  gem 'twitter-bootstrap-rails', '2.2.6'
   gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
@@ -62,13 +63,15 @@ gem 'ransack'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
-#gem 'gmaps4rails'
+
 
 gem 'acts_as_list'
 gem 'best_in_place'
 
-gem "nested_form"
+gem "nested_form", '0.3.2'
 gem 'squeel'
 
+gem 'state_machine'
+
 gem 'acts_as_commentable', '3.0.1'
-gem 'twitter-bootstrap-markup-rails', '0.3.2.2'
+#gem 'twitter-bootstrap-markup-rails', '0.3.2.2'
