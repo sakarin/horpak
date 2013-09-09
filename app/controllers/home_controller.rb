@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
     @search = Apartment.show.search(params[:q])
-    @apartments = @search.result.paginate(:page => params[:page], :per_page => 20)
+    @apartments = @search.result.paginate(:page => params[:page], :per_page => 40)
   end
 
   def search
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
     #@search = Apartment.search(params[:q])
     @search = Apartment.show.all
-    @apartments = @search.result.paginate(:page => params[:page], :per_page => 20)
+    @apartments = @search.result.paginate(:page => params[:page], :per_page => 40)
   end
 
 
