@@ -27,7 +27,7 @@ jQuery ->
   $(".wysihtml5").each (i, elem) ->
     $(elem).wysihtml5()
 
-    $('form').fileupload
+  $('form').fileupload
     dataType: "script"
     add: (e, data) ->
       types = /(\.|\/)(gif|jpe?g|png)$/i
