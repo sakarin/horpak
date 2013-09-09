@@ -26,6 +26,8 @@ class Apartment < ActiveRecord::Base
   scope :draft, with_state('draft')
   scope :exclusive, with_state('exclusive')
 
+  after_save :after_update_apartment
+
 
 
   belongs_to :district
@@ -102,6 +104,10 @@ class Apartment < ActiveRecord::Base
 
   def after_show
     touch :published_at
+  end
+
+  def after_update_apartment
+    self.show
   end
 
 end

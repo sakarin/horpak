@@ -66,11 +66,10 @@ jQuery ->
       $(this).find("a:first").hide()
 
 
-
-  $(".monthly-rate").live "toggle", ->
+  $(".monthly-rate").live "click", ->
     $(this).closest(".rental_fee").find(".rental_monthly_rate").toggle()
 
-  $(".daily-rate").live "toggle", ->
+  $(".daily-rate").live "click", ->
     $(this).closest(".rental_fee").find(".rental_daily_rate").toggle()
 
 

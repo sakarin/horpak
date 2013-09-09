@@ -31,7 +31,7 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.save
-        format.html { redirect_to apartments_url, notice: 'Apartment was successfully updated.' }
+        format.html { redirect_to apartments_url, notice: "#{t('activerecord.models.apartment')}#{t('notice.created')}" }
         format.js { render 'images/create', :locals => {:image => @apartment.images.last } }
       else
         format.html { render action: "new" }
@@ -46,7 +46,7 @@ class ApartmentsController < ApplicationController
 
     respond_to do |format|
       if @apartment.update_attributes(params[:apartment])
-        format.html { redirect_to apartments_url, notice: 'Apartment was successfully updated.' }
+        format.html { redirect_to apartments_url, notice: "#{t('activerecord.models.apartment')}#{t('notice.updated')}" }
         format.js { render 'images/create', :locals => {:image => @apartment.images.last } }
       else
         format.html { render action: "edit", notice: @apartment.errors }
