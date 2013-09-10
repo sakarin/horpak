@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
-gem 'sqlite3'
+
 
 gem 'jquery-rails', '2.1.0'
 
@@ -23,6 +23,7 @@ group :assets do
   gem 'jasny_bootstrap_extension_rails'
 end
 group :development do
+  gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms => [:mri_19, :rbx]
   gem 'guard-bundler'

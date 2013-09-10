@@ -4,7 +4,7 @@ set :default_environment, {
     'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
 }
 
-server "106.187.89.103", :web, :app, :db, primary: true
+server "112.121.146.138", :web, :app, :db, primary: true
 
 set :application, "horpak"
 set :user, "deployer"
