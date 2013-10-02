@@ -12,7 +12,9 @@
       </b>
     </span>
 
-    <span class="name"><a href="/บ้านกันต์-baan-gunn-บางแสน"> <%= a.name %></a><img alt="Update" src="http://r1.static.in.th/assets/update.gif"></span>
+    <span class="name"><%= link_to "#{a.name}", home_path(a) %><img alt="Update" src="http://r1.static.in.th/assets/update.gif">
+
+    </span>
     <span class="addr"><%= "#{a.street} #{a.road} #{a.district.name} #{a.amphur.name} #{a.province.name}" %></span>
     <span class="room_available  "><%= "มีห้องว่าง" if a.room_available %></span>
 

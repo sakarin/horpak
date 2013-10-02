@@ -1,7 +1,7 @@
 <div id="category">
   <ul id="myTab" class="nav nav-tabs" data-tabs="tabs">
     <li class="active"><a href="#home" data-toggle="tab">ค้นหาตามจังหวัด</a></li>
-    <li class=""><a href="#profile" data-toggle="tab">ค้นหาเชิงพาณิชย์</a></li>
+    <li class=""><a href="#profile" data-toggle="tab">สถานศึกษา</a></li>
     <li class=""><a href="#dropdown1" data-toggle="tab">ค้นหาโครงการใหม่</a></li>
 
 
@@ -13,7 +13,7 @@
 
       <div class="tab-pane fade active in" id="home">
         <h2>ค้นหาตามจังหวัด</h2>
-        <%= search_form_for [@search], :url => home_index_path, :html => {:method => :get, :class => "f-filter"} do |f| %>
+        <%= search_form_for [@search], :url => locations_path, :html => {:method => :get, :class => "f-filter"} do |f| %>
             <%= f.collection_select(:province_id_eq, Province.order(:name), :id, :name, {include_blank: "เลือกจังหวัด"}, {:class => 'dropdown'}) %>
             <%= f.select :amphur_id_eq, "", {include_blank: "เลือกอำเภอ"}, {:class => "dropdown", :id => 'apartment_amphur_id'} %>
 
@@ -47,51 +47,94 @@
       </div>
 
       <div class="tab-pane fade" id="profile">
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
-        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1
-          labore
-          velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer
-        </p>
+        <h2>ค้นหาชื่อสถานศึกษา</h2>
+        <%= search_form_for [@search], :url => locations_path, :html => {:method => :get, :class => "f-filter"} do |f| %>
+            <%#= f.collection_select(:province_id_eq, Province.order(:name), :id, :name, {include_blank: "เลือกจังหวัด"}, {:class => 'dropdown'}) %>
+            <%#= f.select :amphur_id_eq, "", {include_blank: "เลือกอำเภอ"}, {:class => "dropdown", :id => 'apartment_amphur_id'} %>
+            <%= text_field_tag :within, params[:within], :class => "text-search", :placeholder => 'ค้นหาด้วยชื่อสถานศีกษา' %>
+
+
+            <select name="room[price]" id="room-price" class="dropdown">
+              <option>ช่วงราคา</option>
+              <optgroup label="ราคาต่อเดือน">
+                <option value="1">0 - 2,000 บาทต่อเดือน</option>
+                <option value="2">2,000 - 4,000 บาทต่อเดือน</option>
+                <option value="3">4,000 - 8,000 บาทต่อเดือน</option>
+                <option value="4">มากกว่า 8,000 บาทต่อเดือน</option>
+              </optgroup>
+              <optgroup label="ราคารายวัน">
+                <option value="5">0 - 500 บาทต่อวัน</option>
+                <option value="6">500 - 1,000 บาทต่อวัน</option>
+                <option value="7">1,000 - 1,500 บาทต่อวัน</option>
+                <option value="8">มากกว่า 1,500 บาทต่อวัน</option>
+              </optgroup>
+            </select>
+
+            <%= link_to_submit(class: 'btn btn-warning btn-large button-x') do %>
+                <i class="icon-search"></i> ค้นหา
+            <% end %>
+        <% end %>
       </div>
       <div class="tab-pane fade" id="dropdown1">
-        <p>
-          vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork
-          sustainable tofu synth chambray yr.</p>
+        <div class="description-container">
+          <ul id="mrt">
+            <li class="station">
+              <a rel="mrt_2036" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2036&amp;property_type=&amp;submit=" oldtitle="MRT สีลม " title="" aria-describedby="ui-tooltip-34"></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2039" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2039&amp;property_type=&amp;submit=" oldtitle="MRT บางซื่อ " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2042" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2042&amp;property_type=&amp;submit=" oldtitle="MRT สวนจตุจักร " title="" aria-describedby="ui-tooltip-36"></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2045" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2045&amp;property_type=&amp;submit=" oldtitle="MRT เพชรบุรี " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2048" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2048&amp;property_type=&amp;submit=" oldtitle="MRT หัวลำโพง " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2051" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2051&amp;property_type=&amp;submit=" oldtitle="MRT สุทธิสาร " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2054" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2054&amp;property_type=&amp;submit=" oldtitle="MRT ห้วยขวาง " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2057" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2057&amp;property_type=&amp;submit=" oldtitle="MRT สุขุมวิท " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2060" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2060&amp;property_type=&amp;submit=" oldtitle="MRT ลุมพินี " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2063" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2063&amp;property_type=&amp;submit=" oldtitle="MRT ลาดพร้าว " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2066" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2066&amp;property_type=&amp;submit=" oldtitle="MRT กำแพงเพชร " title="" aria-describedby="ui-tooltip-44"></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2069" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2069&amp;property_type=&amp;submit=" oldtitle="MRT ศูนย์การประชุมแห่งชาติสิริกิติ์ " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2072" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2072&amp;property_type=&amp;submit=" oldtitle="MRT สามย่าน " title="" aria-describedby="ui-tooltip-46"></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2075" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2075&amp;property_type=&amp;submit=" oldtitle="MRT รัชดาภิเษก " title="" aria-describedby="ui-tooltip-47"></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2078" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2078&amp;property_type=&amp;submit=" oldtitle="MRT คลองเตย " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2081" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2081&amp;property_type=&amp;submit=" oldtitle="MRT ศูนย์วัฒนธรรมแห่งประเทศไทย " title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2084" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2084&amp;property_type=&amp;submit=" oldtitle="MRT พระราม 9" title=""></a>
+            </li>
+            <li class="station">
+              <a rel="mrt_2087" href="/รวมประกาศขาย?transportation_type=MRT&amp;mrt_code=2087&amp;property_type=&amp;submit=" oldtitle="MRT พหลโยธิน " title="" aria-describedby="ui-tooltip-51"></a>
+            </li>
+          </ul>
+        </div>
+
       </div>
 
     </div>
@@ -105,49 +148,5 @@
 
 
 
-<div id="category">
-  <div id="general-content" class="category-left first_column">
-    <div id="result_panel">
-      <div class="general-bar">
-        <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
-        <p>ประกาศ อสังหาฯ แนะนำทั่วไป</p>
-        <%= image_tag "icon-all.png", :width => '53', :height => '19', :class => 'general-more' %>
-      </div>
 
-      <%= render 'home/exclusive' %>
-    </div>
-
-  </div>
-
-  <div class="category-right">
-    <img alt="Web-banner01" height="173" src="/assets/web-banner01.jpg" style="margin:32px 0 20px 0;" width="300">
-    <img alt="Web-banner02" height="127" src="/assets/web-banner02.jpg" style="margin:25px 0 0 0;" width="300">
-
-  </div>
-
-
-  <div id="general-content" class="category-left first_column">
-    <div id="result_panel">
-      <% unless @apartments.nil? %>
-
-          <div class="general-bar">
-            <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
-            <p>ประกาศ อสังหาฯ แนะนำทั่วไป</p>
-            <%= image_tag "icon-all.png", :width => '53', :height => '19', :class => 'general-more' %>
-          </div>
-
-
-          <% @apartments.each do |apartment| %>
-              <%= render 'apartments', :a => apartment %>
-          <% end %>
-
-
-      <% end %>
-    </div>
-  </div>
-
-
-</div>
-
-<div class="clearfix"></div>
 

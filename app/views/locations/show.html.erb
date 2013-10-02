@@ -1,20 +1,14 @@
 <%= render :partial => 'shared/head', :locals => {:current => 'home'} %>
-<%= render partial: 'shared/search_box' %>
+<%#= render partial: 'shared/search_box' %>
+
+
+
 
 <div id="category">
-  <div id="general-content" class="category-left first_column">
-    <div id="result_panel">
-      <div class="general-bar">
-        <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
-        <p>ประกาศ อสังหาฯ แนะนำทั่วไป</p>
-        <%= image_tag "icon-all.png", :width => '53', :height => '19', :class => 'general-more' %>
-      </div>
 
-      <%= render 'home/exclusive' %>
-    </div>
-
+  <div class="search-header">
+    <h1><%= "อพาร์ทเม้นท์ #{params[:within]}" %></h1>
   </div>
-
   <div class="category-right">
     <img alt="Web-banner01" height="173" src="/assets/web-banner01.jpg" style="margin:32px 0 20px 0;" width="300">
     <img alt="Web-banner02" height="127" src="/assets/web-banner02.jpg" style="margin:25px 0 0 0;" width="300">
@@ -40,8 +34,6 @@
 
       <% end %>
     </div>
-
-
   </div>
 
 
@@ -49,5 +41,4 @@
     <%= will_paginate @apartments, :renderer => BootstrapPagination::Rails %>
   </div>
   <div class="clearfix"></div>
-
 </div>

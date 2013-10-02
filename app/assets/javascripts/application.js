@@ -26,4 +26,12 @@
 //= require bootstrap-wysihtml5
 
 
+//= require gallery/galleria
+//= require gallery/galleria/classic
+
+//= require gmapsjs
+
+
+
+
 

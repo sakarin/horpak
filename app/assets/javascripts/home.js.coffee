@@ -55,3 +55,4 @@ $ ->
         $("#q_rooms_min_price_perday_gteq").val 1500
         $("#q_rooms_max_price_perday_lteq").val ""
 
+

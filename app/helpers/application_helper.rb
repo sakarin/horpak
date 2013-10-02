@@ -44,6 +44,11 @@ module ApplicationHelper
     link_to_function (block_given? ? capture(&block) : args[0]), "$(this).closest('form').submit()", args.extract_options!
   end
 
+  def to_address(a)
+    "#{a.street} #{a.road} #{a.district.name} #{a.amphur.name} #{a.province.name}"
+  end
+
+
 
 
 end

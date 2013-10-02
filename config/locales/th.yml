@@ -10,7 +10,18 @@ th:
     created: "ถูกเพิ่มแล้ว"
     updated: "ถูกบันทึกแล้ว"
 
+  collection:
+    room_type:
+      R0: "สตูดิโอ"
+      R1: "1 ห้องนอน"
+      R2: "2 ห้องนอน"
+      R3: "3 ห้องนอน"
+      R4: "4 ห้องนอน"
 
+  label:
+    price:
+      rate_per_day: บาท/วัน
+      rate_per_month: บาท/เดือน
 
   activerecord:
     models:

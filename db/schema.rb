@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130908222228) do
+ActiveRecord::Schema.define(:version => 20130930200041) do
 
   create_table "_apartments_old_20130715", :force => true do |t|
     t.string   "name"
@@ -180,7 +180,7 @@ ActiveRecord::Schema.define(:version => 20130908222228) do
   create_table "rooms", :force => true do |t|
     t.integer  "apartment_id"
     t.string   "name"
-    t.integer  "room_type"
+    t.string   "room_type"
     t.string   "size"
     t.boolean  "monthly"
     t.integer  "min_price_permonth"

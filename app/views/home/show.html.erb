@@ -1,0 +1,240 @@
+<%= render :partial => 'shared/head', :locals => {:current => 'home'} %>
+
+<!-- Modal -->
+<div id="map-window" class="modal hide">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">แผนที่</h3>
+  </div>
+  <div class="modal-body">
+    <%= gmaps4rails(@json) %>
+  </div>
+
+</div>
+
+<div id="category">
+
+
+<div class="category-right">
+  <img alt="Web-banner01" height="173" src="/assets/web-banner01.jpg" style="margin:32px 0 20px 0;" width="300">
+  <img alt="Web-banner02" height="127" src="/assets/web-banner02.jpg" style="margin:25px 0 0 0;" width="300">
+
+</div>
+
+
+<div id="general-content" class="category-left first_column">
+  <div class="general-bar">
+    <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+    <p>เลขที่ประกาศ: <%= @apartment.id %></p>
+
+  </div>
+  <div class="box-body galleria-box">
+    <div class="apartment-title">
+      <h1><%= @apartment.name %></h1>
+
+      <p><%= to_address(@apartment) %></p>
+
+
+    </div>
+
+    <div class="apartment-tel">
+      <div id="main_info_left" class="span3">
+        <span class="phone" itemprop="telephone"><%= @apartment.telephone %><br></span>
+      </div>
+      <div id="main_info_right" class="span3">
+        <span>ค่าเช่า :</span>
+        <br>
+        <span class="price"><%= price_rate_permonth(@apartment) %></span>
+        <span class="tag">บาท/เดือน</span>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <script>
+        Galleria.loadTheme("/assets/gallery/galleria/classic.js");
+
+        Galleria.run("#galleria", {
+            transition: "fade",
+            imageCrop: true
+        });
+
+    </script>
+
+    <i>
+      <% unless @apartment.images.blank? %>
+          <%#= image_tag(@apartment.images.first.attachment_url()) %>
+          <div id="galleria">
+            <% @apartment.images.each do |image| %>
+                <%= image_tag(image.attachment_url) %>
+            <% end %>
+          </div>
+      <% else %>
+          <%= image_tag 'thumb/components.png' %>
+      <% end %>
+    </i>
+
+  </div>
+
+</div>
+
+<div id="general-content" class="category-left first_column">
+  <div class="general-bar">
+    <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+    <p>แผนที่</p>
+  </div>
+  <div class="box-body">
+    <a href="#map-window" data-toggle="modal"><%= image_tag "http://maps.google.com/maps/api/staticmap?size=684x190&sensor=false&language=th&zoom=15&markers=#{@apartment.latitude}%2C#{@apartment.longitude}" %></a>
+
+
+  </div>
+
+</div>
+
+
+<div id="general-content" class="category-left first_column">
+  <div class="general-bar">
+    <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+    <p>รายละเอียด</p>
+  </div>
+  <div class="box-body">
+    <div class="description-container">
+      <div class="description">
+        <%= simple_format @apartment.description %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div id="general-content" class="category-left first_column">
+  <div class="general-bar">
+    <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+    <p>ประเภทห้องและค่าใช้จ่าย</p>
+  </div>
+  <div class="box-body">
+    <table class="room-table">
+      <thead>
+      <tr>
+        <th>ประเภท</th>
+        <th>รูปแบบห้อง</th>
+        <th>ขนาด</th>
+        <th>ค่าเช่ารายเดือน</th>
+        <th>ค่าเช่ารายวัน</th>
+        <th>ห้องว่าง</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @apartment.rooms.each do |r| %>
+          <tr>
+            <td><%= r.name %></td>
+            <td><%= t("collection.room_type.#{r.room_type}") %></td>
+            <td><%= r.size %></td>
+            <td><%= "#{number_with_delimiter(r.min_price_permonth)} - #{number_with_delimiter(r.max_price_permonth)}" %></td>
+            <td><%= "#{number_with_delimiter(r.min_price_perday)} - #{number_with_delimiter(r.max_price_perday)}" %></td>
+            <td><%= image_tag("icons/check.gif", :size => "18x18") if r.available == true %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+
+
+  </div>
+</div>
+
+<div id="general-content" class="category-left first_column">
+  <div class="general-bar">
+    <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+    <p>ราคา</p>
+  </div>
+  <div class="box-body">
+    <table class="room-table">
+      <tbody>
+      <tr class="odd">
+        <td>เงินมัดจำ :</td>
+        <td><%= @apartment.deposit %></td>
+      </tr>
+      <tr>
+        <td>จ่ายล่วงหน้า :</td>
+        <td><%= @apartment.advance_fee %></td>
+      </tr>
+      <tr class="odd">
+        <td>ค่าไฟฟ้า :</td>
+        <td>
+          <% if @apartment.electric_price_type == 1 %>
+              <%= "#{@apartment.electric_price} บาทต่อยูนิต" %>
+          <% else %>
+              <%= "ตามมิเตอร์การไฟฟ้า #{@apartment.electric_price_remark}" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>ค่าน้ำ :</td>
+        <td>
+          <% if @apartment.water_price_type == 1 %>
+              <%= "#{@apartment.water_price} บาทต่อยูนิต" %>
+          <% elsif @apartment.water_price_type == 2 %>
+              <%= "เหมาจ่าย #{@apartment.water_price_monthly_per_person} บาทต่อคน/เดือน" %>
+          <% elsif @apartment.water_price_type == 3 %>
+              <%= "เหมาจ่าย #{@apartment.water_price_monthly_per_room} บาทต่อห้อง/เดือน" %>
+          <% else %>
+              <%= "ตามมิเตอร์การประปา #{@apartment.water_price_remark}" %>
+          <% end %>
+        </td>
+      </tr>
+      <tr class="odd">
+        <td>อินเตอร์เน็ต :</td>
+        <td><%= @apartment.internet_price %></td>
+      </tr>
+      <tr>
+        <td>ค่าโทรศัพย์ :</td>
+        <td><%= @apartment.phone_price %></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<div id="general-content" class="category-left first_column">
+  <div class="general-bar">
+    <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
+    <p>สิ่งอำนวยความสะดวก</p>
+  </div>
+  <div class="box-body">
+    <div class="facility span3">
+      <h3>สิ่งอำนวยความสะดวก ภายในห้อง</h3>
+      <% Facility.all.each do |fac| %>
+          <% check = false %>
+          <% @apartment.facilities.each do |f| %>
+              <% if fac == f %>
+                  <% check = true %>
+                  <% break %>
+              <% end %>
+          <% end %>
+          <span><b class='<%= check.to_s %>'></b><%= fac.name %></span>
+      <% end %>
+    </div>
+    <div class="facility span3">
+      <h3>สิ่งอำนวยความสะดวก ในอาคาร</h3>
+      <% CentralFacility.all.each do |fac| %>
+          <% check = false %>
+          <% @apartment.central_facilities.each do |f| %>
+              <% if fac == f %>
+                  <% check = true %>
+                  <% break %>
+              <% end %>
+          <% end %>
+          <span><b class='<%= check.to_s %>'></b><%= fac.name %></span>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+
+</div>
+
+<div class="clearfix"></div>

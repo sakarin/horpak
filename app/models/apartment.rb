@@ -17,7 +17,11 @@ class Apartment < ActiveRecord::Base
   validates_presence_of :name, :province_id, :amphur_id, :district_id, :postcode, on: :update, if: :update_image_with_out_filed?
   validates_presence_of :address, :street, :road, :telephone, on: :update, if: :update_image_with_out_filed?
 
+  ROOM_TYPE = [:R0, :R1, :R2, :R3, :R4 ]
+
   acts_as_commentable
+
+  acts_as_gmappable
 
   scope :with_state, lambda { |s| where(:state => s) }
 
@@ -36,6 +40,13 @@ class Apartment < ActiveRecord::Base
 
   belongs_to :user
 
+  geocoded_by :gmaps4rails_address
+  after_validation :geocode
+
+  def gmaps4rails_address
+#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
+    "#{self.address} #{self.district.name} #{self.amphur.name} #{self.province.name} #{self.postcode}"
+  end
 
   has_many :images
   accepts_nested_attributes_for :images, :allow_destroy => true
@@ -74,6 +85,12 @@ class Apartment < ActiveRecord::Base
 
   def room_price_rate
     #self.rooms
+  end
+
+
+
+  ransacker :location do |parent|
+    Arel::Nodes::SqlLiteral.new("date(routes.created_at)")
   end
 
   # shipment state machine (see http://github.com/pluginaweek/state_machine/tree/master for details)
