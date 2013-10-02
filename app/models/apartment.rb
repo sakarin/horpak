@@ -1,4 +1,6 @@
 class Apartment < ActiveRecord::Base
+  extend ::Geocoder::Model::ActiveRecord
+
   attr_accessible :address, :amphur_id, :description, :district_id, :email, :latitude, :longitude, :name, :postcode, :province_id, :road, :staff, :street, :telephone
   attr_accessible :water_price_type, :water_price, :water_price_monthly_per_person, :water_price_monthly_per_room, :water_price_remark
   attr_accessible :electric_price_type, :electric_price, :electric_price_remark, :deposit, :advance_fee, :phone_price, :internet_price
@@ -11,17 +13,20 @@ class Apartment < ActiveRecord::Base
   attr_accessible :images_attributes
 
   attr_accessible :rooms_attributes
+
+
+
   has_many :rooms
   accepts_nested_attributes_for :rooms, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
 
   validates_presence_of :name, :province_id, :amphur_id, :district_id, :postcode, on: :update, if: :update_image_with_out_filed?
   validates_presence_of :address, :street, :road, :telephone, on: :update, if: :update_image_with_out_filed?
 
-  ROOM_TYPE = [:R0, :R1, :R2, :R3, :R4 ]
+  ROOM_TYPE = [:R0, :R1, :R2, :R3, :R4]
 
   acts_as_commentable
 
-  acts_as_gmappable
+  acts_as_gmappable :validation => false
 
   scope :with_state, lambda { |s| where(:state => s) }
 
@@ -33,19 +38,22 @@ class Apartment < ActiveRecord::Base
   after_save :after_update_apartment
 
 
-
   belongs_to :district
   belongs_to :amphur
   belongs_to :province
 
   belongs_to :user
 
-  geocoded_by :gmaps4rails_address
-  after_validation :geocode
+
+  #geocoded_by :gmaps4rails_address
+  #after_validation :geocode, :if => :address_changed?
+
+  geocoded_by :address_for_geocode
+  reverse_geocoded_by :latitude, :longitude
 
   def gmaps4rails_address
-#describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-    "#{self.address} #{self.district.name} #{self.amphur.name} #{self.province.name} #{self.postcode}"
+    ""
+      #"#{self.address} #{self.district.name} #{self.amphur.name} #{self.province.name} #{self.postcode}"
   end
 
   has_many :images
@@ -80,13 +88,12 @@ class Apartment < ActiveRecord::Base
   #scope :available, room_available
 
   def room_available
-     !self.rooms.where(available: true).blank?
+    !self.rooms.where(available: true).blank?
   end
 
   def room_price_rate
     #self.rooms
   end
-
 
 
   ransacker :location do |parent|
