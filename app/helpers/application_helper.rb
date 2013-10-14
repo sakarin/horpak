@@ -45,7 +45,8 @@ module ApplicationHelper
   end
 
   def to_address(a)
-    "#{a.street} #{a.road} #{a.district.name} #{a.amphur.name} #{a.province.name}"
+
+    "#{a.street} #{a.road} #{a.district.name unless a.district.nil?} #{a.amphur.name unless a.amphur.nil?} #{a.province.name unless a.province.nil?}"
   end
 
 

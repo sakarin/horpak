@@ -1,7 +1,30 @@
 <div class="span11">
-<h1>ลงประกาศอพาร์ทเม้นท์</h1>
+  <h1>ลงประกาศอพาร์ทเม้นท์</h1>
 
-<%= render 'form' %>
+<%#= render 'form' %>
 
-<%= link_to 'Back', apartments_path %>
+  <%= simple_nested_form_for(@apartment) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <div class="title-group">
+          <div class="title">
+            <h3>
+              <div class="RG"></div>
+              ข้อมูลที่พัก
+            </h3>
+          </div>
+        </div>
+        <div class="form-horizontal">
+          <%= f.input :name, input_html: {class: 'input-xxlarge'} %>
+
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, :class => "btn btn-large btn-success" %>
+        </div>
+      </div>
+
+  <% end %>
+
+  <%= link_to 'ย้อนกลับ', apartments_path %>
 </div>

@@ -113,7 +113,21 @@ jQuery ->
   $('.electric-price-select').on('click', electric_price_click);
   $('.electric-price-input').on('click', electric_price_click);
 
+  $(".new_apartment_button").click ->
+    $("#new-apartment-form").toggle()
 
+#  $("#apartment_name").keyup ->
+#    name = $("#apartment_name").val()
+#    if name.length > 1
+#      $("#btn_apartment_submit").enable()
+#    else
+#      $("#btn_apartment_submit").disable()
 
+  $("#btn_apartment_submit").attr "disabled", "disabled"
+  $("#apartment_name").keyup ->
+    unless $(this).val() is ""
+      $("#btn_apartment_submit").removeAttr "disabled"
+    else
+      $("#btn_apartment_submit").attr "disabled", "disabled"
 
 

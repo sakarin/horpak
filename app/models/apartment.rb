@@ -19,8 +19,10 @@ class Apartment < ActiveRecord::Base
   has_many :rooms
   accepts_nested_attributes_for :rooms, allow_destroy: true, reject_if: proc { |attributes| attributes['name'].blank? }
 
-  validates_presence_of :name, :province_id, :amphur_id, :district_id, :postcode, on: :update, if: :update_image_with_out_filed?
-  validates_presence_of :address, :street, :road, :telephone, on: :update, if: :update_image_with_out_filed?
+  #validates_presence_of :name, :province_id, :amphur_id, :district_id, :postcode, on: :update, if: :update_image_with_out_filed?
+  #validates_presence_of :address, :street, :road, :telephone, on: :update, if: :update_image_with_out_filed?
+
+  #validates_presence_of  :name, :province_id, :amphur_id, :district_id, :postcode,:address, :street, :road, :telephone, on: :update
 
   ROOM_TYPE = [:R0, :R1, :R2, :R3, :R4]
 
@@ -66,6 +68,12 @@ class Apartment < ActiveRecord::Base
   has_many :central_facilities, through: :central_facilities_apartments
 
   def update_image_with_out_filed?
+    #if self.name.blank? and !self.images.blank?
+    #  false
+    #else
+    #  true
+    #end
+
     if self.name.blank? and !self.images.blank?
       false
     else

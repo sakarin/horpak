@@ -3,12 +3,13 @@ class ApartmentsController < ApplicationController
 
   def index
 
-    @current_user.apartments.draft.each {|a| a.destroy}
+    #@current_user.apartments.draft.each {|a| a.destroy}
 
 
     @search = @current_user.apartments.search(params[:q])
     @apartments = @search.result.paginate(:page => params[:page], :per_page => 5)
 
+    @apartment = Apartment.new(:user_id => @current_user.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -17,8 +18,10 @@ class ApartmentsController < ApplicationController
   end
 
   def new
-    @apartment = Apartment.create(:user_id => @current_user.id)
-    redirect_to edit_apartment_url(@apartment)
+    #@apartment = Apartment.create(:user_id => @current_user.id)
+    #redirect_to edit_apartment_url(@apartment)
+    #@apartment = Apartment.new(:user_id => @current_user.id)
+
   end
 
   def edit
@@ -28,17 +31,18 @@ class ApartmentsController < ApplicationController
 
   def create
     @apartment = Apartment.new(params[:apartment])
+    @apartment.user = @current_user
 
-    respond_to do |format|
-      if @apartment.save
-        format.html { redirect_to apartments_url, notice: "#{t('activerecord.models.apartment')}#{t('notice.created')}" }
-        format.js { render 'images/create', :locals => {:image => @apartment.images.last } }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @apartment.errors, status: :unprocessable_entity }
+    if @apartment.save
 
-      end
+      redirect_to edit_apartment_url(@apartment)
+    else
+      #render action: "index"
+      redirect_to apartments_path
     end
+
+
+
   end
 
   def update

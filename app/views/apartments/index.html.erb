@@ -4,8 +4,39 @@
       <h1><%= t('activerecord.models.apartment') %></h1>
     </div>
     <div class="span4 pull-bottom">
-      <%= link_to "เพิ่ม#{t('activerecord.models.apartment')}"  , new_apartment_path, :class => "btn btn-success pull-right" %>
+      <%#= link_to "เพิ่ม#{t('activerecord.models.apartment')}"  , new_apartment_path, :class => "btn btn-success pull-right" %>
+      <%= link_to "เพิ่ม#{t('activerecord.models.apartment')}", "#", :class => "btn btn-success pull-right new_apartment_button" %>
     </div>
+  </div>
+
+  <div id="new-apartment-form" style="display: none;">
+    <ul class="breadcrumb">
+      <%= simple_nested_form_for(@apartment) do |f| %>
+          <%= f.error_notification %>
+
+          <div class="form-inputs">
+
+            <div class="title-group">
+              <div class="title">
+                <h3>
+                  <div class="RG"></div>
+                  เพิ่มหอพัก
+                </h3>
+              </div>
+            </div>
+            <div class="form-horizontal">
+              <%= f.input :name, input_html: {class: 'input-xxlarge'} %>
+
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, :class => "btn btn-large btn-primary", :id => "btn_apartment_submit" %>
+              <%= link_to "ยกเลิก", "#", :class => "new_apartment_button close_box" %>
+            </div>
+          </div>
+
+      <% end %>
+    </ul>
+
   </div>
 
 

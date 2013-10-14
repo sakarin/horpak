@@ -15,7 +15,7 @@
     <span class="name"><%= link_to "#{a.name}", home_path(a) %><img alt="Update" src="http://r1.static.in.th/assets/update.gif">
 
     </span>
-    <span class="addr"><%= "#{a.street} #{a.road} #{a.district.name} #{a.amphur.name} #{a.province.name}" %></span>
+    <span class="addr"><%= to_address(a) %></span>
     <span class="room_available  "><%= "มีห้องว่าง" if a.room_available %></span>
 
     <div class="pbox span3">
