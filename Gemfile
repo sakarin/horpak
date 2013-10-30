@@ -52,6 +52,7 @@ group :test do
   gem 'email_spec'
 end
 
+gem 'capistrano'
 gem 'devise', '2.1.2'
 gem "omniauth-facebook", "1.4.1"
 

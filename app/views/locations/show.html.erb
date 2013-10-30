@@ -7,7 +7,7 @@
 <div id="category">
 
   <div class="search-header">
-    <h1><%= "อพาร์ทเม้นท์ #{params[:within]}" %></h1>
+    <h1><%=  "อพาร์ทเม้นท์ #{params[:within] if params[:within].present?} #{params[:id] if params[:id].present?}"   %></h1>
   </div>
   <div class="category-right">
     <img alt="Web-banner01" height="173" src="/assets/web-banner01.jpg" style="margin:32px 0 20px 0;" width="300">
@@ -22,7 +22,7 @@
 
           <div class="general-bar">
             <%= image_tag "icon-intro.png", :width => '16', :height => '16', :class => 'icon-bar' %>
-            <p>ประกาศ อสังหาฯ แนะนำทั่วไป</p>
+            <p>อพาร์ทเม้นท์ ห้องพัก หอพัก </p>
             <%= image_tag "icon-all.png", :width => '53', :height => '19', :class => 'general-more' %>
           </div>
 

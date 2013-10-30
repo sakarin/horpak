@@ -42,6 +42,7 @@ Horpak::Application.routes.draw do
 
   resource :locations, :path => Rack::Utils.escape('อพาร์ทเม้นท์-ห้องพัก-หอพัก-บริเวณ')
 
+  get Rack::Utils.escape('อพาร์ทเม้นท์-ห้องพัก-หอพัก-บริเวณ'), to: 'locations#index'
   get Rack::Utils.escape('อพาร์ทเม้นท์-ห้องพัก-หอพัก-บริเวณ') + '/:id', to: 'locations#show'
 
   #get Rack::Utils.escape('หอพัก'), to: 'users#index'
