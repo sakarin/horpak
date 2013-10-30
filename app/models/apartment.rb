@@ -14,6 +14,8 @@ class Apartment < ActiveRecord::Base
 
   attr_accessible :rooms_attributes
 
+  has_pretty_param :name
+
 
 
   has_many :rooms

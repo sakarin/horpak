@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 Horpak::Application.routes.draw do
 
 
@@ -35,10 +37,17 @@ Horpak::Application.routes.draw do
 
   root :to => "home#index"
 
-  get 'locations', to: 'locations#index'
-  get 'locations/:id', to: 'locations#show'
+  #get 'locations', to: 'locations#index'
+  #get 'locations/:id', to: 'locations#show'
 
-  resources :home
+  resource :locations, :path => Rack::Utils.escape('อพาร์ทเม้นท์-ห้องพัก-หอพัก-บริเวณ')
+
+  get Rack::Utils.escape('อพาร์ทเม้นท์-ห้องพัก-หอพัก-บริเวณ') + '/:id', to: 'locations#show'
+
+  #get Rack::Utils.escape('หอพัก'), to: 'users#index'
+  #get 'หอพัก', to: 'home#index'
+
+  resources :home ,:path => Rack::Utils.escape('อพาร์ทเม้นท์-ห้องพัก-หอพัก')
   #resources :locations do
   #  match 'search' => 'locations#search', :via => [:get, :post], :as => :search
   #end

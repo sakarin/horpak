@@ -32,17 +32,19 @@ p {
 
 .toppage-content {
     margin: auto;
-    width: 956px;
+    width: 1003px;
     height: 39px;
 }
 
 .toppage-content p {
-    margin: 9px 0 0 100px;
-    padding: 0px;
     float: left;
-    font-family: DBOzoneX;
-    font-size: 27px;
-    color: #FFF;
+
+}
+
+.toppage-content .icon-logo {
+    padding: 5px;
+    width: 30px;
+    float: left;
 }
 
 @-moz-document url-prefix() {
@@ -59,8 +61,8 @@ ul.small-menu {
     font-family: DBOzoneX;
     text-decoration: none;
     font-size: 18px;
-    color: #FFF;
-    width: 270px;
+    color: #FFF!important;
+    /*width: 270px;*/
     margin: 9px 0 10px 0;
     padding: 0px;
     list-style: none;
@@ -78,7 +80,7 @@ ul.small-menu a:hover {
     font-family: DBOzoneX;
     text-decoration: underline;
     font-size: 18px;
-    color: #FFF;
+    color: #FFF!important;
 }
 
 @-moz-document url-prefix() {
@@ -133,9 +135,9 @@ ul.small-menu  li {
 }
 
 .main-menu {
-    padding: 0 0 0 80px;
+    /*padding: 0 0 0 80px;*/
     margin: auto;
-    width: 876px;
+    width: 1003px;
     height: 41px;
 }
 
@@ -1222,13 +1224,16 @@ flag-eng {
     border-radius: 7px;
 }
 
-.icon-footer {
+.icon-footer-bar {
     padding: 15px 0 0 0;
     width: 946px;
     margin: auto;
+    background-image: none;
 }
 
-.icon-footer img {
+
+
+.icon-footer-bar img {
     width: 29px;
     height: 29px;
     float: left;
@@ -3090,6 +3095,20 @@ flag-eng {
     border-radius: 1px;
 }
 
+.home .text-search-horpak {
+    font-size: 14.5px;
+    height: 28px;
+    padding-right: 15px;
+    margin-bottom: 15px;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    width: 595px;
+}
+
+.home .button-search-horpak {
+    margin-top: -15px;
+}
+
 #galleria{
     height:415px;
 
@@ -3235,7 +3254,7 @@ ol, ul {
 }
 
 .galleria-box {
-    height: 550px;
+    min-height: 550px;
 }
 
 .apartment-tel {
@@ -3297,4 +3316,12 @@ ol, ul {
     top: 100px;
 }
 
+#footer .footer_zones a {
+    font-size: 12px;
+    float: left;
+    width: 140px;
+    text-align: left;
+}
+#footer .footer_zones h4 {
+    text-align: left;   }
 

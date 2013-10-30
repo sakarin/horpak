@@ -1,6 +1,6 @@
 <div id="category">
   <ul id="myTab" class="nav nav-tabs" data-tabs="tabs">
-    <li class="active"><a href="#home" data-toggle="tab">ค้นหาตามจังหวัด</a></li>
+    <li class="active"><a href="#home" data-toggle="tab">ค้นหาหอพัก</a></li>
     <li class=""><a href="#profile" data-toggle="tab">สถานศึกษา</a></li>
     <li class=""><a href="#dropdown1" data-toggle="tab">ค้นหาโครงการใหม่</a></li>
 
@@ -12,8 +12,14 @@
     <div id="myTabContent" class="tab-content">
 
       <div class="tab-pane fade active in" id="home">
-        <h2>ค้นหาตามจังหวัด</h2>
+        <h2>ค้นหาหอพัก</h2>
         <%= search_form_for [@search], :url => locations_path, :html => {:method => :get, :class => "f-filter"} do |f| %>
+            <%= f.text_field :name_eq, :class => "text-search-horpak", :placeholder => 'ค้นหาหอพัก' %>
+            <%= link_to_submit(class: 'btn btn-warning btn-large button-x button-search-horpak') do %>
+                <i class="icon-search"></i> ค้นหา
+            <% end %>
+            <div class="clearfix"></div>
+
             <%= f.collection_select(:province_id_eq, Province.order(:name), :id, :name, {include_blank: "เลือกจังหวัด"}, {:class => 'dropdown'}) %>
             <%= f.select :amphur_id_eq, "", {include_blank: "เลือกอำเภอ"}, {:class => "dropdown", :id => 'apartment_amphur_id'} %>
 
@@ -39,9 +45,7 @@
               </optgroup>
             </select>
 
-            <%= link_to_submit(class: 'btn btn-warning btn-large button-x') do %>
-                <i class="icon-search"></i> ค้นหา
-            <% end %>
+
         <% end %>
 
       </div>

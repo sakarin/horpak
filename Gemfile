@@ -85,4 +85,8 @@ gem 'gmapsjs'
 
 gem 'gmaps4rails'
 
+gem 'pretty_param'
+
+
+
 #gem 'i18n-js', :git => 'git@github.com:fnando/i18n-js.git', :branch => 'master'

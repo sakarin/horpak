@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   def index
     if params[:within].present?
       @search = Apartment.show.search(params[:q])
-      @apartments = Apartment.near(params[:within])
+      @apartments = Apartment.near(params[:within]).paginate(:page => params[:page], :per_page => 15)
     else
       @search = Apartment.show.search(params[:q])
       @apartments = @search.result.paginate(:page => params[:page], :per_page => 15)
@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
 
   def show
     @search = Apartment.show.search(params[:q])
-    @apartments = Apartment.near(params[:id])
+    @apartments = Apartment.near(params[:id]).paginate(:page => params[:page], :per_page => 15)
   end
 
   #def search
