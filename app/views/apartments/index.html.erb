@@ -4,8 +4,29 @@
       <h1><%= t('activerecord.models.apartment') %></h1>
     </div>
     <div class="span4 pull-bottom">
-      <%#= link_to "เพิ่ม#{t('activerecord.models.apartment')}"  , new_apartment_path, :class => "btn btn-success pull-right" %>
+
       <%= link_to "เพิ่ม#{t('activerecord.models.apartment')}", "#", :class => "btn btn-success pull-right new_apartment_button" %>
+    </div>
+  </div>
+
+  <div class="search-form well">
+    <div class="">
+      <%= search_form_for @search, :html => {:class => ""} do |f| %>
+          <div class="row">
+            <div class="span3">
+              <div class="control-group">
+                <label class="control-label" for="inputSource">ค้นหาหอพัก</label>
+
+                <div class="controls">
+                  <%= f.text_field :name_cont %>
+                  <%= f.button "ค้นหา", :class => "btn btn-primary" %>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+      <% end %>
     </div>
   </div>
 
