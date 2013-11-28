@@ -53,8 +53,14 @@ group :test do
 end
 
 gem 'capistrano'
-gem 'devise', '2.1.2'
-gem "omniauth-facebook", "1.4.1"
+
+gem "devise", ">= 2.2.3"
+
+#gem 'devise', '2.1.2'
+#gem 'omniauth-facebook', '1.5'
+
+gem "omniauth", "~> 1.1.1"
+gem "omniauth-facebook", "~> 1.4.1"
 
 gem 'carrierwave', '0.6.2'
 gem "rmagick"

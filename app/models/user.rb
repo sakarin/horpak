@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  before_create :set_default_role
+
   rolify
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -58,6 +61,13 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+
+
+  private
+  def set_default_role
+    self.add_role :user
   end
 
 end

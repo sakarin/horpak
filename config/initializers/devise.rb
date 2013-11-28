@@ -15,6 +15,8 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
+  config.secret_key = 'd4fdbd3fbe287fa818e9d508a387ca3832e678d14ab8c25825a579e90e1e80619cd5df5629822e3a37dd27e68b41b542575bb3457c8e277ca7e500ce5b9dfa4f'
+
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -214,13 +216,16 @@ Devise.setup do |config|
   # config.navigational_formats = ["*/*", :html]
 
   # The default HTTP method used to sign out a resource. Default is :delete.
-  config.sign_out_via = :delete
+  #config.sign_out_via = :delete
+
+  #http://stackoverflow.com/questions/6557311/no-route-matches-users-sign-out-devise-rails-3
+  config.sign_out_via = :get
 
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
 
-  config.omniauth :facebook, "509537062459834", "eb1bcffe8fb27d8802f2753ee64c7572", :image_size => 'normal'
+  config.omniauth :facebook, "467823933337261", "ef1226b88f7a590e6a8deb922f87474d", :image_size => 'normal'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

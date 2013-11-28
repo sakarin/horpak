@@ -1,9 +1,7 @@
 <div id="toppage-mainpage">
   <div class="toppage-content">
 
-    <p><%= link_to image_tag("siamhorpak-logo-white.png"), root_path  %></p>
-
-
+    <p><%= link_to image_tag("siamhorpak-logo-white.png"), root_path %></p>
 
 
     <ul class="small-menu">
@@ -12,7 +10,11 @@
       <li><%= image_tag "top-small-menu.gif", :width => '2', :height => '12' %></li>
       <li><%= link_to "โฆษณากับเรา", "#" %></li>
       <li><%= image_tag "top-small-menu.gif", :width => '2', :height => '12' %></li>
-      <li><%= link_to "เข้าสู่ระบบ", new_user_session_path %></li>
+      <% if current_user.nil? %>
+          <li><%= link_to "เข้าสู่ระบบ", new_user_session_path %></li>
+      <% else %>
+          <li><%= link_to "ออกจากระบบ", destroy_user_session_path %></li>
+      <% end %>
     </ul>
   </div>
   <div class="clear"></div>
@@ -29,7 +31,7 @@
         <% else %>
             <li class="main-menu02">
         <% end %>
-            <%= link_to "รถไฟฟ้า", "#" %>
+        <%= link_to "รถไฟฟ้า", "#" %>
         </li>
         <% if current == 'new-property' %>
             <li class="main-menu03-present">
@@ -44,7 +46,7 @@
         <% else %>
             <li class="main-menu04">
         <% end %>
-          <%= link_to "สถานศึกษา", "#" %>
+        <%= link_to "สถานศึกษา", "#" %>
         </li>
 
 

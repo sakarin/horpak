@@ -14,7 +14,8 @@
       <div class="tab-pane fade active in" id="home">
         <h2>ค้นหาหอพัก</h2>
         <%= search_form_for [@search], :url => locations_path, :html => {:method => :get, :class => "f-filter"} do |f| %>
-            <%= f.text_field :name_cont, :class => "text-search-horpak", :placeholder => 'ค้นหาหอพัก' %>
+            <%#= f.text_field :name_cont, :class => "text-search-horpak", :placeholder => 'ค้นหาหอพัก' %>
+            <%= text_field_tag :within, params[:within], :class => "text-search-horpak", :placeholder => 'ค้นหาหอพัก' %>
             <%= link_to_submit(class: 'btn btn-warning btn-large button-x button-search-horpak') do %>
                 <i class="icon-search"></i> ค้นหา
             <% end %>
